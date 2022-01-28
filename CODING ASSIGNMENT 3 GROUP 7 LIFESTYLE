@@ -1,0 +1,3904 @@
+// WAN RUI YIN (287456)
+
+
+package Assignment3;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class WatchesAssignment3 {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);	
+		System.out.println("Welcome to Orchid IT Mall!");
+		String tsHouse = null;
+		TSHouse(tsHouse);
+		String program = null;
+		Program(program);
+		String price1 = null;
+		Price1(price1);
+		
+	}
+	
+	public static void TSHouse(String tsHouse){
+		Scanner scan = new Scanner (System.in);
+		int service;
+		int proceed;
+		System.out.println("************************************************************************");
+		System.out.println("                             TS House");
+		System.out.println("************************************************************************");
+		System.out.println("                     Lot 1A, Orchid IT Mall, ");
+		System.out.println("                     Street 5, Casual Garden, ");
+		System.out.println("                     10000 State.");
+		System.out.println("                     CareLine : 1300-88-9876");
+		System.out.println("                     H/P: 012-3789654   FAX: 04-3789675");
+		System.out.println("************************************************************************");
+	
+		System.out.println();
+		System.out.println("Welcome to TS House !");
+		System.out.println("TS House is providing the service to upgrade the program in "
+				            + "your smartwatch.");
+		System.out.println("This program namely TS-1 will contain a few main features in helping you to "
+				            + "track your fitness and while exercising.");
+		System.out.println();
+		System.out.println("   Firstly, by updating this program, you are able to set your "
+				            + "daily goal for burning calories. This will motivates you and ");
+		System.out.println("enable you to make it a habit to exercise regularly.");
+		System.out.println("   Secondly, the smartwatch will display your speed of exercising. "
+				            + "This is to give you an idea about your speed and you can ");
+		System.out.println("improve it by exercising regularly. ");
+		System.out.println("   By updating the program, you will know the amount of calories "
+				            + "you will need to burn and the duration you still need to ");
+		System.out.println("exercise in order to achieve your daily goal. You will become "
+				            + "satisfy and have self-confidence as you can achieve your");
+		System.out.println("daily goal. Besides, you will have an idea about the duration "
+				            + "you still need to exercise and glad to keep going.");
+		System.out.println("   Simply put, this program will helps monitor your exercise. "
+				            + "In long term, you are able to lead a healthy lifestyle and ");
+		System.out.println("stay away from health problems such as high blood pressure, "
+				            + "obesity and atherosclerosis. ");
+		System.out.println();
+		System.out.println("Are you interested in our TS-1 ?");
+		System.out.println("Please enter 1 for updating pogram.");
+	    service = scan.nextInt();
+		System.out.println("Updating .... Please wait");
+		System.out.println();
+		System.out.println("Update suceeded. You are directed to the trial now.");
+		System.out.println("Please enter any integer to continue.");
+		proceed = scan.nextInt();
+		System.out.println();
+		}
+	
+	public static void Program(String program) {
+//PART 1		
+	//INPUT USER DETAILS
+	Scanner scan = new Scanner (System.in);	
+	System.out.println("Dear user, what is your name? ");
+    String name = scan.nextLine();
+	System.out.println("Hi " + name + ", what is you age?"); 
+	double age = scan.nextDouble();
+	System.out.println("Hi " + name + ", what is you gender? Please enter 1 for female and 2 for male."); 
+	int gender = scan.nextInt();
+	System.out.println("Hi " + name + ", what is you weight in kg?"); 
+	double weight = scan.nextDouble();
+    System.out.println("Hi " + name + ", what is you height in cm?"); 
+	double height = scan.nextDouble();
+		String[][] activitylevel = {{"ACTIVITY LEVEL"," "},
+			{"1.2","sedentary         (little to no exercise)"},
+			{"1.375","lightly active    (light exercise 1–3 days per week)"},
+			{"1.55","moderately active (moderate exercise 3–5 days per week)"},
+			{"1.725","very active       (hard exercise 6–7 days per week)"},
+			{"1.9","extra active      (very hard exercise or training or a physical job)"}};
+    System.out.println(Arrays.deepToString(activitylevel)
+    		.replace("],","\n").replace(",","\t")
+    		.replaceAll("[\\[\\]]", " "));
+	System.out.println("Hi " + name + ", what is your activity level?"); 
+	double activity = scan.nextDouble();
+	
+//PART 2
+	//(RMR)RestingMetabolicRate-numberOfCaloriesYourBodyBurnsAtRest 
+		double rmr = 0;
+		if(gender == 1)
+		rmr=10*weight+6.25*height-5*age-161; //rmr for female
+		else if(gender ==2)
+		rmr=10*weight+6.25*height-5*age+5; //rmr for male
+	//TotalDailyEnergyExpenditure(TDEE)
+		double tdee = rmr * activity;
+		System.out.print(name + ", your Resting Metabolic Rate (RMR) is ");
+        System.out.printf("%.2f",rmr); 
+        System.out.print(" kcal/day.");
+        System.out.println();
+        System.out.print( name + ", your Total Daily Energy Expenditure (TDEE) is ");
+        System.out.printf("%.2f",tdee );
+        System.out.print(" cal/day.");
+        System.out.println();
+ 
+//PART 3
+        System.out.println("Are you trying to lose weight?");
+        System.out.println("Please enter 1 for losing weight, 2 for maintaining weight and 3 for gaining weight.");
+        int lose = scan.nextInt(); 
+        double tdee2       = tdee *0.8; //Losing weight should have 10%-20% deficit in calories from tdee per day
+        double tdee3       = tdee *1.2; //Gaining weight should have 10%-20% surplus in calories from tdee per day
+        double tdee4       = tdee *0.2; //Can be surplus or deficit based on weight maintainence
+        double maxCalories = rmr *2.5;
+        if (lose == 1) {
+        	System.out.print("You are losing weight. You should have " );
+            System.out.printf("%.2f",tdee2 );
+            System.out.print(" kcal/day.");
+            System.out.println();
+        }
+        else if(lose == 2) {	
+        	System.out.print("You are maintain weight. You should have " );
+        	System.out.printf("%.2f",tdee );
+        	System.out.print(" kcal/day.");
+            System.out.println();
+        }
+        else if(lose == 3) {
+        	System.out.print("You are gaining weight. You should have ");
+        	System.out.printf("%.2f",tdee3 );
+        	  System.out.print(" kcal/day.");
+            System.out.println();
+        }
+        System.out.print("Recommended goal : more than ");
+        System.out.printf("%.2f",tdee4 );
+        System.out.print(" kcal/day.");
+        System.out.println();
+//PART 4	
+	//amount of calories user wanted to burn daily
+    double goal=0;
+	System.out.println("Hi "+name+", please enter your goal to burn calories today. "); 
+	goal = scan.nextDouble();
+	while(goal > maxCalories) {
+		System.out.println("Warning! Your calories needed by your body is not enough.");
+		System.out.println("This should be unhealthy for you.");
+		System.out.println(name + ", please re-enter your goal to burn calories today.");
+		goal = scan.nextDouble();
+	}
+	System.out.println("Please enter the distance traveled today in metres.");
+	double x = scan.nextDouble();
+	System.out.println("Please enter the time you have exercised today in minutes.");
+	double y = scan.nextDouble();
+	//amount of calories user burned displayed by the smart watch
+	System.out.println("Please enter the calories burned today.");
+	double z = scan.nextDouble();
+	
+	//CALCULATION
+	double speed = x/y; // speed = distance traveled / time taken
+	double c1    = z/y; // c1 = calories burned in one minute = calories burned / time taken
+	double c2    = goal - z; // c2=calories yet to burn in order to achieve the daily goal
+	double time  = c2/c1; //time=time needed to achieve daily goal
+	
+	
+	//PRINT RESULTS
+	  // Speed
+	System.out.print("Your speed now is ");
+	System.out.printf("%.1f", speed);
+	System.out.println(" m/min.");
+	if(speed >= 107.23 && speed <= 160.9)
+		System.out.println("You are jogging.");
+	else if(speed>160.9)
+		System.out.println("You are running");
+	System.out.println();
+	  // Results achieved till now
+	System.out.print("By exercising at speed " );
+	System.out.printf("%.1f", speed);
+	System.out.print(" m/min for ");
+	System.out.printf("%.1f", y);
+	System.out.print(" minutes, you can burn ");
+	System.out.printf("%.2f", z);
+	System.out.println(" calories. ");
+	System.out.println();
+	  // Amount of calories to be burned to achieve goal
+	System.out.print("You need to burn ");
+	System.out.printf("%.2f", c2);
+	System.out.println(" more calories in order to achieve your daily goal.");
+	System.out.println(name + ", keep going!");
+	System.out.println();
+	  // Duration of Time needed to achieve goal
+	System.out.print("You just need to exercise ");
+	System.out.printf("%.1f", time);
+	System.out.println(" minutes more to achieve your goal.");
+	System.out.println(name + ", keep it up! ");
+	System.out.println();
+	System.out.println("Trial completed.");
+	System.out.println("Details successfully updated.");
+	System.out.println();
+	System.out.println("Thank you for using the trial.");
+	System.out.println("Now, you will be directed to the payment for this program, TS-1.");
+	System.out.println();
+	System.out.println("Please enter any integer to continue.");
+	int proceed = scan.nextInt();
+	System.out.println();
+	
+	}
+
+	//DISCOUNT	
+	public static void Price1(String price1) {
+	Scanner scan = new Scanner (System.in);	
+	int member;
+	int game;
+	double price=0;
+	double discount=0;
+	double discountRate=0;
+	int warranty = 0;
+	String warrantyCode = null;
+	System.out.println("The fees for updating the pogram is RM 150.");
+	System.out.println("Since we are having grand opening today, we have some promotion for you.");
+	System.out.println("We will have a mini game later on and this will be the discount rate.");
+	System.out.println("member: 20%, non-member: 5%, member winning the mini game: 30%, non-member winning the mini game: 8%");
+	System.out.println();
+	System.out.println("First of all, would you like to be our member?"
+			+ " The membership costs RM10 and it is for lifetime. Please enter 1 for yes and 2 for no.");
+	member=scan.nextInt();
+	System.out.println("Thank you. The mini game starts.");
+	System.out.println();
+	System.out.println("INSTRUCTION : Miss TS, the TS Watch AI assistant will pick a random number as 'X' from 1-50.");
+	System.out.println("You will need to guess 'X' correctly in order to win the game. ");
+	System.out.println("For every wrong guess, you will be given a clue about 'X'.");
+	System.out.println();
+	System.out.println("Are you ready? The game starts now. Please enter 1 to continue.");
+	game=scan.nextInt();
+	while(game!=1) {
+		System.out.println("Are you ready? The game starts now. Please enter 1 to continue.");
+		game=scan.nextInt();
+	}
+	if(member==1) {
+	System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+	System.out.println("              GUESS THE 'X'     ");
+	System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+	
+	int i;
+	
+	int number = (int)(Math.random() * 51);
+	int guess = 0;
+	 
+		
+		while(number != guess) {
+			 for (i=5; i>=1; i--) {
+		System.out.println("You have "+i+ " chance(s) from now.     ");
+		System.out.println("Please enter a random number from 1-50.     ");
+	    guess = scan.nextInt();
+	   
+	    if(number == guess) {
+	      System.out.println("Congratulations! You win the game.");
+	      price = 160*0.7;
+	      discount = 160*0.3;
+	      discountRate = 30.00; 
+	    break;
+	    }else if( guess > number) {
+	    System.out.println("Too high");
+	    }else if( guess < number) {
+	     System.out.println("Too low");     
+	    }
+	    if(i==1) {
+			System.out.println("Oops, you lost. The X is " + number +". Nevermind, good luck next time.");
+			price = 160*0.8;
+		    discount = 160*0.2;
+		    discountRate =20.00;
+		 break;
+	    }
+		}
+	 break;
+	 }
+	}
+		else if(member==2) {
+		
+		    System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+			System.out.println("              GUESS THE 'X'     ");
+			System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+			int j;
+		
+			int number = (int)(Math.random() * 51);
+			int guess = 0;
+			
+			while(number != guess) {
+				for (j=3; j>=1; j--) {
+				System.out.println("You have "+j+" chance(s) from now.     ");
+				System.out.println("Please enter a random number from 1-50.     ");
+			    guess = scan.nextInt();
+			
+			    if(number == guess) {
+			      System.out.println("Congratulations! You win the game.");
+			      price = 150*0.92;
+				  discount = 150*0.08;
+				  discountRate = 8.00;
+			    break;
+			    }else if( guess > number) {
+			    System.out.println("Too high");
+			    }else if( guess < number)  {
+			      System.out.println("Too low");
+			    }
+			    if(j==1) {
+					System.out.println("Oops, you lost. The X is " + number + ". Nevermind, good luck next time.");
+					price = 150*0.95;
+				    discount = 150*0.05;
+				    discountRate = 5.00;  
+				    break;
+			    }
+	       }
+			
+		break;}
+			
+		}
+	//PRINTING OF PRICE
+	System.out.println();
+	System.out.println("You have recieved discount at  " + discountRate + " %.");
+	System.out.print("Your discount price will be at RM  " );	
+	System.out.printf("%.2f",discount);	
+	System.out.println(". " );	
+	System.out.print("Your final price will be at    RM " );	
+	System.out.printf("%.2f",price);	
+	System.out.println(". " );
+	System.out.println();
+	if (member==1) {
+		warranty = 12;
+		warrantyCode = "TS-100098";
+	 }
+	 else {
+		 warranty = 6;
+		 warrantyCode = "TS-100097";
+	}
+	System.out.println("Besides, you will have "+ warranty +"-month warranty for your program. " );	
+	System.out.println("Your warranty code will be " + warrantyCode +"." );	
+	System.out.println();
+	
+//PAYMENT USING CASH OR CARD
+	int pay;
+	double cash = 0 ;
+	double change = 0;
+	System.out.println("Do you want to pay by cash or by card? Please enter 1 for cash and 2 for card.");
+	pay = scan.nextInt();
+	if(pay==2) {
+		int password, password1;
+		int k;
+		System.out.println("Please enter your numerical password. ");
+		password = scan.nextInt();
+		System.out.println("Please re-enter your password.");
+		password1 = scan.nextInt();
+		
+		
+		for (k=3; k>=0; k--) {
+			if(k==0) {
+				System.out.println("LOGIN FAILED. Please pay by cash. Please enter 1.");
+				pay = scan.nextInt();
+				break;
+		        }
+			if (password == password1) { 
+				System.out.println("Correct password. ");
+				System.out.print("The final price you should pay is RM " );	
+				System.out.printf("%.2f",price);	
+				System.out.println(". " );
+				System.out.println("RM "+price+" ENTERED.");
+				System.out.println("THANK YOU.");
+				cash = price;
+			break;
+			}
+			else if(password != password1) {
+				System.out.println("Wrong password. ");
+				System.out.println("You have "+k+" more chance(s). Please re-enter your password.");
+				password1 = scan.nextInt();				
+			}
+			
+			
+		}
+		
+	}
+	if(pay==1) {
+		System.out.print("The final price you should pay is RM " );	
+		System.out.printf("%.2f",price);	
+		System.out.println(". " );
+		System.out.println("Please enter the amount you want to pay." );
+		cash = scan.nextDouble();
+		while(cash<price) {
+			System.out.print("The final price you should pay is RM " );	
+			System.out.printf("%.2f",price);	
+			System.out.println(". " );
+			System.out.println("Please re-enter the amount you want to pay." );
+			cash = scan.nextDouble();
+		}
+		if(cash==price) {
+			System.out.print("The price you paid is RM " );	
+			System.out.printf("%.2f",price);	
+			System.out.println(". " );
+			System.out.println("Thank you." );
+	    }else if(cash>price) {
+	    	change=cash-price;
+	    	System.out.print("The price you paid is RM" );	
+			System.out.printf("%.2f",cash);	
+			System.out.println(". " );
+			System.out.print("Thank you. This is your change RM " );
+			System.out.printf("%.2f",change);	
+			System.out.println(". " );
+	    }
+	}
+	
+		
+	
+//PRINT RECEIPT
+	System.out.println();
+	System.out.println("Here's a voucher for you.");
+	System.out.println("  ======================================  ");
+	System.out.println(" //                                    \\\\");
+	System.out.println(" \\\\             VOUCHER                //");
+	System.out.println(" //____________________________________\\\\");	
+	System.out.println(" \\\\                                    //");
+	System.out.println(" //         # ORCHID IT MALL           \\\\");	
+	System.out.println(" \\\\         # TS HOUSE                 //");
+	System.out.println(" //                                    \\\\");	
+	System.out.println(" \\\\      $$ DISCOUNT RM20 $$           //");
+	System.out.println(" //                                    \\\\");	
+	System.out.println(" \\\\   **with purchase of RM200         //");
+	System.out.println(" //   **can be used once only          \\\\");
+	System.out.println(" \\\\   **use before 21 DEC 2022         //");
+	System.out.println(" //                                    \\\\");
+	System.out.println(" \\\\                                    //");
+	System.out.println("  ======================================  ");
+	System.out.println();
+	System.out.println();
+	System.out.println();
+	System.out.println("Here is your receipt." );
+	System.out.println();
+	System.out.println("*********************************************");
+	System.out.println("                   TS House");
+	System.out.println("*********************************************");
+	System.out.println("Lot 1A, Orchid IT Mall, ");
+	System.out.println("Street 5, Casual Garden, ");
+	System.out.println("10000 State.");
+	System.out.println("CareLine : 1300-88-9876");
+	System.out.println("H/P: 012-3789654            FAX: 04-3789675");
+	System.out.println("*********************************************");
+	System.out.println("ITEM                  QTY          PRICE");
+	System.out.println("Upgrading Pogram      *1       RM   150.00");
+	if(member==1)
+    System.out.println("Membership Fee        *1       RM    10.00");
+	System.out.println();
+	System.out.println();
+	System.out.print("Discount rate, %:                    ");
+	System.out.printf("%.2f%n",discountRate);
+	System.out.print("Discount price  :              RM    ");
+	System.out.printf("%.2f%n",discount);
+	System.out.print("Final price     :              RM   ");
+	System.out.printf("%.2f%n",price);
+	System.out.println("_____________________________________________");
+	System.out.print("Amount paid     :              RM   ");
+	System.out.printf("%.2f%n",cash);
+	System.out.print("Change          :              RM    ");
+	System.out.printf("%.2f%n",change);
+	System.out.println();
+	System.out.println();
+	System.out.println();
+	System.out.println("*********************************************");
+	System.out.println("WARRANTY CODE   :               " + warrantyCode);
+	System.out.println("*********************************************");
+	System.out.println("                  Thank You!");
+	System.out.println("              Please come again!");
+	System.out.println("*********************************************");
+	
+	
+	
+	
+	scan.close();	
+	
+}	
+	
+	
+	
+}
+
+
+
+
+// SITI NUR RAYYAN BINTI MOHAMAD KAMAL (287462)
+
+
+package assignment;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+public class Assignment3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("---0`~`0---RAYYAN SPORT SHOES SHOP---0`~`0---");
+		System.out.println("\t");
+		String inputuserdetails = null;
+		InputUserDetails(inputuserdetails);
+		String mainprogram = null;
+		MainProgram(mainprogram);
+		String pricecalculation = null;
+		PriceCalculation(pricecalculation);
+		String typerofpayment = null;
+		TypeOfPayment(typerofpayment);
+	}
+		
+		public static void InputUserDetails(String inputuserdetails) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Please enter your name:");
+		String name;
+		name = sc.next();
+		System.out.println("\t");
+		System.out.println("Enter your gender (Women=W && Men=M) :");
+		char gender =sc.next().charAt(0);
+					
+		
+		if (gender == 'W' || gender =='w') {
+
+		System.out.println("********SIZE FOR WOMEN********");
+		System.out.println("*30-33 = Total price + RM1.00*");
+		System.out.println("*34-37 = Total price + RM2.00*");
+		System.out.println("*38-41 = Total price + RM3.00*");
+		System.out.println("******************************");
+		System.out.println();
+		}
+		
+		else if (gender == 'M' || gender=='m') {
+			System.out.println();
+		
+		System.out.println("*********SIZE FOR MEN*********");
+		System.out.println("*37-40 = Total price + RM3.00*");
+		System.out.println("*41-44 = Total price + RM4.00*");
+		System.out.println("*45-48 = Total price + RM5.00*");
+		System.out.println("******************************");
+		
+		}
+		
+
+		System.out.println("Enter your shoes size:");
+		int size =sc.nextInt();
+	}
+	public static void MainProgram(String mainprogram) {
+		Scanner sc = new Scanner(System.in);
+		String brand,design,sets;
+		int size;
+		System.out.print("BRANDS AND TYPE");
+		
+		for(int i=1;i<6;i++) {
+			System.out.print("---");
+		}
+		System.out.println("\n_________________________________________________");
+		System.out.println("| Adidas   |-Football    |Price design + RM2.00 |");
+		System.out.println("|          |-Hiking      |                      |");
+		System.out.println("|          |-Daily wear  |                      |");
+		System.out.println("|__________|_____________|______________________|");
+		System.out.println("|Puma      |-Flats       |Price design + RM2.50 |");
+		System.out.println("|          |-Runners     |                      |");
+		System.out.println("|          |-Kicks       |                      |");
+		System.out.println("|__________|_____________|______________________|");
+		System.out.println("|Skechers  |-Works       |Price design + RM3.00 |");
+		System.out.println("|          |-Runners     |                      |");
+		System.out.println("|          |-Hiking      |                      |");
+		System.out.println("|__________|_____________|______________________|");
+		System.out.println("|Nike      |-Football    |Price design + RM3.20 |");
+		System.out.println("|          |-Skate       |                      |");
+		System.out.println("|          |-Gym         |                      |");
+		System.out.println("|__________|_____________|______________________|");
+		System.out.println("|Line7     |-Cycling     |Price design + RM3.50 |");
+		System.out.println("|          |-Jogging     |                      |");
+		System.out.println("|          |-Tennis      |                      |");
+		System.out.println("|__________|_____________|______________________|");
+		
+		System.out.println("Enter brand(type):");
+		brand = sc.next();
+		System.out.println("\t");
+		
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^DESIGN^^^^^^^^^^^^^^^^^^^^^");
+		System.out.println("^Plain with chosen colour            = RM60.00 ^");
+		System.out.println("^Stripe                              = RM80.00 ^");
+		System.out.println("^Air max                             = RM100.00^");
+		System.out.println("^Autumn Travel                       = RM150.00^");
+		System.out.println("^Limited edition(UV changing color)  = RM200.00^");
+		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
+		System.out.println("-----------------------SETS WITH ANY BRANDS------------------------");
+		System.out.println("___________________________________________________________________");
+		System.out.println("|    Set   |                     LIST                             |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     A    |-Plain and Stripe only                                |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     B    |-Autumn Travel and Stripe only                        |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     C    |-Air max only                                         |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     D    |-Limited edition only                                 |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     E    |-PREMIUM (ADIDAS AND PUMA brands only with any design |");
+		System.out.println("|__________|______________________________________________________|");
+		
+		System.out.println("\t");
+		//DO NOT PUT SPACE WHEN ENTER DESIGN
+		System.out.println("Your wanted design:");
+		design =sc.next();
+		
+		System.out.println("\t");
+		System.out.println("Enter your chosen set:");
+		sets = sc.next();
+		
+		System.out.println("\t");
+
+	}
+	public static void PriceCalculation(String pricecalculation) {
+		Scanner sc = new Scanner(System.in);
+		double price;
+		
+		System.out.println("\t");
+
+		System.out.println("---------------------------------SETS THAT COME WITH OFFERS--------------------------------");
+		System.out.println("___________________________________________________________________________________________");
+		System.out.println("|    Set   |           OPFFERS                       |       PRICE                        |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+		System.out.println("|     A    |-Buy 1, Free 1                           |Price set A + RM0                   |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+		System.out.println("|     B    |-Buy 2 gets 30% off for second shoes     |Price set B + (price set B * 30%)   |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+		System.out.println("|     C    |-Buy 3 gets limited free gifts worth RM50| Price set C + free gifts           |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+		System.out.println("|     D    |-Buy 2 gets to wear test any brands      | Price set D + RM5.00               |");
+		System.out.println("|          | by add RM5.00                           |                                    |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+		System.out.println("|     E    |-Get member ship card                    | Price set E + (RM 10.00)           |");
+		System.out.println("|__________|_________________________________________|____________________________________|");
+					
+		System.out.println("\t");
+		
+		System.out.println("-----------------------CALCULATION FOR PRICE-----------------------");
+		System.out.println("___________________________________________________________________");
+		System.out.println("|    Set   |                Formula Price                         |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     A    |(RM60.00 OR RM 80.00) + RM0                           |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     B    |RM150.00 + (RM80 * 30%) OR RM80 + (RM150 *30%)        |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     C    |RM150.00 * 3 + FREE GIFTS                             |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     D    |(RM200.00 * 2) + RM5.00                               |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("|     E    |(RM60.00 OR RM 80.00 OR RM100.00 OR RM150.00          |");
+		System.out.println("|          |   OR RM200.00) + RM10.00                             |");
+		System.out.println("|__________|______________________________________________________|");
+		System.out.println("THE PRICE FOR SIZE AND DESIGN WILL BE ADDED AFTER THE CALCULATION FOR PRICE");
+
+		System.out.println("Total Price: RM");
+		price = sc.nextDouble();
+	
+	}
+	
+	public static void TypeOfPayment(String typeofpayment) {
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("How do you wish to pay? (cash=1 && card=2) :");
+		int cash = sc.nextInt();
+
+		if (cash == 1) {
+		System.out.println("Please hand in the money to the cashier");
+		System.out.println("THANK YOU for puchasing with us" );
+
+		}
+		else if (cash == 2) {
+		System.out.println("Do you want payWave or pin");
+		System.out.println("If payWave please put your card here, if pin please input your pin");
+		System.out.println("THANK YOU for puchasing with us" );
+
+		}
+	}}
+  
+  
+  
+  
+  // TAN GUAN XUN (287471)
+  
+  
+  package programmingLifestyle;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Assignment_3 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String user_details = null;
+		input_user_details(user_details);
+		String program = null;
+		mainProgram(program);
+		String receipt = null;
+		paymentReceipt(receipt);
+		
+	}
+	
+	public static void input_user_details(String user_details) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("__________________________________________________________________________________");
+		System.out.println("");
+		System.out.println("	ZALORA MALAYSIA: Online Platform for Customize Handbags Service" );
+		System.out.println("__________________________________________________________________________________");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("	** Customer Service Team at 03-92123535 or customer@my.zalora.com");
+		System.out.println("----------------------------------------------------------------------------------");
+		System.out.println("");
+		System.out.println("Welcome to ZALORA, online platform for FASHION & LIFESTYLE! ");
+		System.out.println("This program provide a customize handbag service.");
+		System.out.println();
+		
+		System.out.println("First, do you wish to obtain suggestion size, weight and type of handbags? (Y/N)");
+		char a = sc.next().charAt(0);
+		
+		
+	
+		if((a=='y')||(a=='Y')) {
+			System.out.println("Please answer the following question accordingly.");
+			System.out.println("1. Please enter your height (cm): ");
+			int b = sc.nextInt();
+			System.out.println("2. Please enter your weight (kg): ");
+			int c = sc.nextInt();
+			System.out.println("3. Please enter your body type: ");
+			System.out.println("  a.	Inverted Triangle Body Type");
+			System.out.println("  b.	Triangle Body Type");
+			System.out.println("  c.	Rectangle Body Type");
+			System.out.println("  d.	Hourglass Body Type");
+			System.out.println("  e.	Apple Body Type");
+			char d = sc.next().charAt(0);
+			
+			System.out.println();
+			System.out.println("Handbag size chart by height and weight:");
+			System.out.println();
+			String[][] height = {{"Height(cm)","Recommend Size of Handbag"},
+								{"-------------------------------------------"},
+								{">175 cm","Large or Extra large"},
+								{"160 - 175 cm","Medium"},
+								{"<160 cm","Small"}};
+			System.out.println(Arrays.deepToString(height)
+					.replace("],","\n").replace(",","\t| ")
+	                .replaceAll("[\\[\\]]", " "));
+			
+			
+			System.out.println();
+			String[][] weight = {{"Weight(kg)","Recommend Size of Handbag"},
+								{"-------------------------------------------"},
+								{">75kg	","Large or Extra large"},
+								{"60 - 75kg","Medium or Large"},
+								{"45 - 60kg","Medium"},
+								{"<45kg	","Small"}};
+			System.out.println(Arrays.deepToString(weight)
+					.replace("],","\n").replace(",","\t| ")
+	                .replaceAll("[\\[\\]]", " "));
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("Handbag  suggestion chart by Body Type: ");
+			System.out.println();
+			String[][] bodytype ={{"Body Type		","Suggestion Handbag"},
+									{"--------------------------------------------------------"},
+									{"Inverted Triangle Body Type","-crossbody hanbags"},
+									{"			","-hobo handbags"},
+									{"			", "-shoulder handbags"},
+									{"			", ""},
+									{"Triangle Body Type	","-satchel handbags"},
+									{"			", ""},
+									{"Rectangle Body Type	","-satchel hanbags"},
+									{"			","-hobo handbags"},
+									{"			", ""},
+									{"Hourglass Body Type	","-tote handbags"},
+									{"			","-satchel handbags"},
+									{"			","-hobo handbags"},
+									{"			","-shoulder handbags"},
+									{"			", ""},
+									{"Apple Body Type	","-tote handbags"}};
+			System.out.println(Arrays.deepToString(bodytype)
+					.replace("],","\n").replace(",","\t| ")
+	                .replaceAll("[\\[\\]]", " "));
+			System.out.println("");
+			
+			if(b<160) {
+				System.out.println("Suggestion:");
+				System.out.println("	Your height is "+b+"cm.");
+				System.out.println("	Recommend size of handbags based on the chart above is SMALL size.");
+				System.out.println("");
+			}else if((b>=160)&&(b<=175)) {
+				System.out.println("Suggestion:");
+				System.out.println("	Your height is "+b+"cm.");
+				System.out.println("	Recommend size of handbags based on the chart above is MEDIUM size.");
+				System.out.println("");
+			}else if(b>175) {
+				System.out.println("Suggestion:");
+				System.out.println("	Your height is "+b+"cm.");
+				System.out.println("	Recommend size of handbags based on the chart above is LARGE or EXTRA LARGE size.");
+				System.out.println("");
+			}
+			
+			if(c<45) {
+				System.out.println("	Your weight is "+c+"kg.");
+				System.out.println("	Recommend size of handbags based on the chart above is SMALL size.");
+				System.out.println("");
+			}else if((c>=45)&&(c<=60)) {
+				System.out.println("	Your weight is "+c+"kg.");
+				System.out.println("	Recommend size of handbags based on the chart above is MEDIUM size.");
+				System.out.println("");
+			}else if((c>=60)&&(c<=75)) {
+				System.out.println("	Your weight is "+c+"kg.");
+				System.out.println("	Recommend size of handbags based on the chart above is MEDIUM or LARGE size.");
+				System.out.println("");
+			}else if(c>75) {
+				System.out.println("	Your weight is "+c+"kg.");
+				System.out.println("	Recommend size of handbags based on the chart above is LARGE or EXTRA LARGE size.");
+				System.out.println("");
+			}
+			
+			switch (d) {
+			
+			case 'a':
+			case 'A':
+				System.out.println("	Your body type is Inverted Triangle Body Type.");
+				System.out.println("	Suggestion Handbags:");
+				System.out.println("		i.   Crossbody handbags");
+				System.out.println("		ii.  Hobo handbags");
+				System.out.println("		iii. Shoulder handbags");
+				System.out.println("");
+				break;
+			case 'b':
+			case 'B':
+				System.out.println("	Your body type is Triangle Body Type.");
+				System.out.println("	Suggestion Handbags:");
+				System.out.println("		i.   Satchel handbags");
+				System.out.println("");
+				break;
+			case 'c':
+			case 'C':
+				System.out.println("	Your body type is Rectangle Body Type.");
+				System.out.println("	Suggestion Handbags:");
+				System.out.println("		i.   Satchel handbags");
+				System.out.println("		ii.  Hobo handbags");
+				System.out.println("");
+				break;
+			case 'd':
+			case 'D':
+				System.out.println("	Your body type is Hourglass Body Type.");
+				System.out.println("	Suggestion Handbags:");
+				System.out.println("		i.   Tote handbags");
+				System.out.println("		ii.  Satchel handbags");
+				System.out.println("		iii. Hobo handbags");
+				System.out.println("		iv.  Crossbody handbags");
+				System.out.println("		v.   Shoulder handbags");
+				System.out.println("");
+				break;
+			case 'e':
+			case 'E':
+				System.out.println("	Your body type is Apple Body Type.");
+				System.out.println("	Suggestion Handbags:");
+				System.out.println("		i.   Tote handbags");
+				System.out.println("");
+				break;
+			default:
+				System.out.println("Invalid Input for Body Type !!!");
+				System.out.println("");
+			}
+			
+		}else {
+			System.out.println("Loading...");
+			System.out.println("You will be redirect to the customize section.");
+			System.out.println("");
+		}
+		
+	}
+
+	public static void mainProgram(String program) {
+		
+		Scanner sc = new Scanner(System.in);
+        
+		String b1 = null,b2= null,b3= null,b4= null,b5= null,b6= null;
+		
+		double brand = 0;
+        double type_of_handbag = 0;
+        double material_price = 0;
+        double accessories_price = 0;
+        double color_price = 0;
+        double size_price = 0;
+        
+		// Customization part
+		System.out.println("Before start personalization feature of the handbags, Please choose the brand and type of the handbag you prefer:");
+ 		System.out.println("Brand:");
+ 		System.out.println("	a. Gucci");
+ 		System.out.println("	b. Coach");
+ 		System.out.println("	c. Louis Vuitton");
+ 		System.out.println("	d. Kate Spade");
+ 		System.out.println("	e. Guess");
+ 		System.out.println("	f. Bonia");
+ 		System.out.println("	g. Fossil");
+ 		System.out.println();
+ 		System.out.println("Please select the brand of the handbag: ");
+ 		char f = sc.next().charAt(0);
+ 		
+ 		switch (f){
+ 		case'a':
+ 			b1 = "Gucci";
+ 			brand = 0;
+ 			break;
+ 		case'b':
+ 			b1 = "Coach";
+ 			brand = 0;
+ 			break;
+ 		case'c':
+ 			b1 = "Louis Vuitton";
+ 			brand = 0;
+ 			break;
+ 		case'd':
+ 			b1 = "Kate Spade";
+ 			brand = 0;
+ 			break;
+ 		case'e':
+ 			b1 = "Guess";
+ 			brand = 0;
+ 			break;
+ 		case'f':
+ 			b1 = "Bonia";
+ 			brand = 0;
+ 			break;
+ 		case'g':
+ 			b1 = "Fossil";
+ 			brand = 0;
+ 			break;
+ 		default:
+ 			System.out.println("Invalid Input for Brand !!!");
+ 		}
+ 		
+ 		System.out.println("Types of handbag:");
+ 		System.out.println("   1.  Clutch        ||"+ " RM150");
+ 		System.out.println("   2.  Hobo          ||"+ " RM210");
+ 		System.out.println("   3.  Satchel       ||"+ " RM175");
+ 		System.out.println("   4.  Shopper       ||"+ " RM100");
+ 		System.out.println("   5.  Travel        ||"+ " RM250");
+ 		System.out.println("   6.  Cross-body    ||"+ " RM130");
+ 		System.out.println("   7.  Sports        ||"+ " RM90");
+ 		System.out.println("   8.  Beach         ||"+ " RM60");
+ 		System.out.println("   9.  Messenger Bag ||"+ " RM90");
+ 		System.out.println();
+ 		System.out.println("Please select the type of the handbag: ");
+ 		char k = sc.next().charAt(0);
+ 		
+ 		switch (k){
+ 		case'1':
+ 			b2 = "Clutch";
+ 			type_of_handbag = 150;
+ 			break;
+ 		case'2':
+ 			b2 = "Hobo";
+ 			type_of_handbag = 210;
+ 			break;
+ 		case'3':
+ 			b2 = "Satchel";
+ 			type_of_handbag = 175;
+ 			break;
+ 		case'4':
+ 			b2 = "Shopper";
+ 			type_of_handbag = 100;
+ 			break;
+ 		case'5':
+ 			b2 = "Travel";
+ 			type_of_handbag = 250;
+ 			break;
+ 		case'6':
+ 			b2 = "Cross-body";
+ 			type_of_handbag = 130;
+ 			break;
+ 		case'7':
+ 			b2 = "Sports";
+ 			type_of_handbag = 90;
+ 			break;
+ 		case'8':
+ 			b2 = "Beach";
+ 			type_of_handbag = 60;
+ 			break;
+ 		case'9':
+ 			b2 = "Messenger Bag";
+ 			type_of_handbag = 90;
+ 			break;
+ 		default:
+ 			System.out.println("Invalid Input for Brand !!!");
+ 		}
+		
+		System.out.println();
+		System.out.println("============Personalization Section============");
+		System.out.println();
+		String[][] columnNames = {{"Material	","Price(RM)"},
+									{"-----------------------------------"},
+									{"a. Leather	","RM90"},
+									{"b. Vegan Leather","RM25"},
+									{"c. Cotton Canvas","RM55"},
+									{"d. Nylon	","RM30"},
+									{"e. Cordura	","RM35"},
+									{"f. Denim	","RM70"}};
+	
+		System.out.println(Arrays.deepToString(columnNames)
+				.replace("],","\n").replace(",","\t| ")
+                .replaceAll("[\\[\\]]", " "));
+		
+		System.out.println();
+		System.out.println("Please select the material of the handbags:");
+		char g = sc.next().charAt(0);
+		System.out.println();
+		
+		switch(g) {
+		case'a':
+			b3 = "Leather";
+			material_price = 90;
+			break;
+		case'b':
+			b3 = "Vegan Leather";
+			material_price = 25;
+			break;
+		case'c':
+			b3 = "Cotton Canvas";
+			material_price = 55;
+			break;
+		case'd':
+			b3 = "Nylon";
+			material_price = 30;
+			break;
+		case'e':
+			b3 = "Cordura";
+			material_price = 35;
+			break;
+		case'f':
+			b3 = "Denim";
+			material_price = 70;
+			break;
+		default:
+			System.out.println("Invalid input for material !!!");
+		}
+		
+		System.out.println("=====Accessories Add-on(Handbag Compartment)=====");
+		System.out.println();
+		String[][] compartment = {{"Items			","Price (RM)"},
+									{"--------------------------------------------"},
+									{"a. Adding compartment(each)","RM15"},
+									{"b. Adding handle	","RM7"},
+									{"c. Adding zipper	","RM5"},
+									{"d. Adding inner pocket","RM12"},
+									{"e. Adding clip/ key ring","RM2.50"}};
+		
+		System.out.println(Arrays.deepToString(compartment)
+				.replace("],","\n").replace(",","\t| ")
+                .replaceAll("[\\[\\]]", " "));
+		
+		
+		System.out.println();
+		System.out.println("Please select your accessories add-on: ");
+		char p = sc.next().charAt(0);
+		
+		System.out.println("Please enter the quantity: ");
+		int count = sc.nextInt();
+		System.out.println();
+		
+		switch(p){
+		case'a':
+			b4 = "Compartment";
+			accessories_price = 15*count;
+			break;
+		case'b':
+			b4 = "Handle";
+			accessories_price = 7*count;
+			break;
+		case'c':
+			b4 = "Zipper";
+			accessories_price = 5*count;
+			break;
+		case'd':
+			b4 = "Inner Pocket";
+			accessories_price = 12*count;
+			break;
+		case'e':
+			b4 = "clip/ key ring";
+			accessories_price = 2.5*count;
+			break;
+		default:
+			System.out.println("Invalid Input for accessories !!!");
+		}
+		
+		
+		System.out.println("=================Color Selection==================");
+		System.out.println();
+		String[][] color = {{"Color			","Price (RM)"},
+							{"--------------------------------------------------"},
+							{"a. Black		","Free of Charge"},
+							{"b. White		","Free of Charge"},
+							{"c. Charcoal		","Free of Charge"},
+							{"d. Beige		","Free of Charge"},
+							{"e. Red		","Free of Charge"},
+							{"f. Yellow		","Free of Charge"},
+							{"g. Premium Multi-color","RM25"},
+							{"h. Premium Pearl color","RM14"},
+							{"i. Premium Black Gold	","RM20"}};
+		
+		System.out.println(Arrays.deepToString(color)
+				.replace("],","\n").replace(",","\t| ")
+                .replaceAll("[\\[\\]]", " "));
+		
+		System.out.println();
+		System.out.println("Please select your color: ");
+		char u = sc.next().charAt(0);
+		System.out.println();
+		
+		switch (u) {
+		case'a':
+			b5 = "Black";
+			color_price = 0;
+			break;
+		case'b':
+			b5 = "White";
+			color_price = 0;
+			break;
+		case'c':
+			b5 = "Charcoal";
+			color_price = 0;
+			break;
+		case'd':
+			b5 = "Beige";
+			color_price = 0;
+			break;
+		case'e':
+			b5 = "Red";
+			color_price = 0;
+			break;
+		case'f':
+			b5 = "Yellow";
+			color_price = 0;
+			break;
+		case'g':
+			b5 = "Premium Multi-color";
+			color_price = 25;
+			break;
+		case'h':
+			b5 = "Premium Pearl color";
+			color_price = 14;
+			break;
+		case'i':
+			b5 = "Premium Black Gold";
+			color_price = 20;
+			break;
+		default:
+			System.out.println("");
+		}
+		
+		System.out.println("===================Size Selection==================");
+		System.out.println();
+		System.out.println("	1. Extra Large |" + "  RM 25");
+		System.out.println("	2. Large       |" + "  RM 15");
+		System.out.println("	3. Medium      |" + "  RM 10");
+		System.out.println("	4. Small       |" + "  RM 10");
+		
+		System.out.println();
+		System.out.println("Please select your size for handbag: ");
+		char t = sc.next().charAt(0);
+		System.out.println();
+		
+		switch(t) {
+		case'1':
+			b6 = "Extra Large";
+			size_price = 25;
+			break;
+		case'2':
+			b6 = "Large";
+			size_price = 15;
+			break;
+		case'3':
+			b6 = "Medium";
+			size_price = 10;
+			break;
+		case'4':
+			b6 = "Small";
+			size_price = 10;
+			break;
+		default:
+			System.out.println("Invalid input for size selection !!!");
+		}
+		
+		System.out.println("===================================================================");
+		System.out.println("                          Membership                               ");
+		System.out.println("===================================================================");
+		System.out.println("**10% offer and free premium gift will be available for membership");
+		System.out.println("  Free Shipping will also be available for membership");
+		System.out.println("  Zero interest for installment payment");
+		System.out.println();
+		System.out.println("Do you have a membership?");
+		boolean member = sc.nextBoolean();
+		System.out.println();
+		
+		if (member==true) {
+			System.out.println("Please enter your member id: ");
+			int id = sc.nextInt();
+			System.out.println("");
+			System.out.println("You can now enjoy the membership privilege.");
+			System.out.println("	i.   10% offer & Free Premium Gift");
+			System.out.println("	ii.  Free Shipping");
+			System.out.println("	iii. Zero interest for installment payment");
+			System.out.println("");	
+		}else {
+			System.out.println("Do you want to apply membership ? (Y/N)");
+			char apply = sc.next().charAt(0);
+			if ((apply=='y')||(apply=='Y')) {
+				System.out.println("The application for membership will cost RM100 annually.");
+				System.out.println("Loading...");
+				System.out.println("Redirect to the payment sites");
+			}else {
+				System.out.println("Loading...");
+				System.out.println("Redirect to the payment sites");
+			}
+		}
+		System.out.println("===================================================================");
+		System.out.println("                         Confirm Order                             ");
+		System.out.println("===================================================================");
+		System.out.println();
+		System.out.println("The brand of the bag you choose is   : "+b1);
+		System.out.println("The type of handbag you choose is    : "+b2);
+		System.out.println("The material you choose is           : "+b3);
+		System.out.println("The accessoreis add-on you choose is : "+b4);
+		System.out.println("The color you choose is              : "+b5);
+		System.out.println("The size of handbag you choose is    : "+b6);
+		System.out.println("");
+		
+		System.out.println("Confirm you order and proceed to payment ? (Y/N)");
+		char confirm = sc.next().charAt(0);
+		
+		if((confirm =='n')||(confirm =='N')) {
+			System.exit(0);
+		}
+		
+		double shipping = 15;
+		double discount_price= 0;
+		double total_before_discount = brand + type_of_handbag + material_price + accessories_price 
+				+ color_price + size_price;
+		
+		//Calculation
+		if(member==true) {
+			shipping=0;
+			discount_price= total_before_discount*10/100;
+			
+		}
+		double total_before_discount_1 = brand + type_of_handbag + material_price + accessories_price 
+				+ color_price + size_price +shipping;
+		
+		double total_after_discount = total_before_discount_1 - discount_price;
+		
+		System.out.println("===================================================================");
+		System.out.println("                         Payment                                   ");
+		System.out.println("===================================================================");
+		System.out.println();
+		System.out.printf("The price of the handbag      =  RM "+"%.2f",type_of_handbag);
+		System.out.println();
+		System.out.printf("The price of the material     =  RM "+"%.2f",material_price);
+		System.out.println();
+		System.out.printf("The price of the accessories  =  RM "+"%.2f",accessories_price);
+		System.out.println();
+		System.out.printf("The price of the color chosen =  RM "+"%.2f",color_price);
+		System.out.println();
+		System.out.printf("The price of the size chosen  =  RM "+"%.2f",size_price);
+		System.out.println();
+		System.out.printf("Shipping fees                 =  RM "+"%.2f",shipping);
+		System.out.println();
+		System.out.printf("Total price before discount   =  RM "+"%.2f",total_before_discount_1);
+		System.out.println();
+		System.out.printf("Membership Offer              = -RM "+"%.2f",discount_price);
+		System.out.println();
+		System.out.printf("______________________________________________________");
+		System.out.println();
+		System.out.printf("Total price after discount    =  RM " +"%.2f",total_after_discount);
+		System.out.println();
+		System.out.println();
+		
+		double amount;
+		do {
+			System.out.println("Please enter the amount paid  =  RM ");
+			amount = sc.nextDouble();
+			if(amount<total_after_discount) {
+				System.out.println("Payment declined, Insufficient fund");
+				System.out.println("Please Re-enter the amount paid.");
+				System.out.println();
+			}else {
+			System.out.printf("Total amount paid             =  RM "+ "%.2f",amount);
+			System.out.println();
+			}
+		}while(amount<total_after_discount);
+		
+		double change = amount -total_after_discount;
+		System.out.printf("Change                        =  RM " +"%.2f",change);
+		System.out.println();
+		System.out.println();
+		System.out.println("Thank you very much! Please enjoy your day!");
+	}
+	
+	public static void paymentReceipt(String receipt) {
+		
+		System.out.println();
+		System.out.println("Voucher: ");
+		System.out.println();
+		System.out.println("  ____________________________________________________________________");
+		System.out.println("||====================================================================||");
+		System.out.println("||## ZALORA MALAYSIA: Online Platform for Customize Handbags Service  ||");
+		System.out.println("||--------------------------------------------------------------------||");
+		System.out.println("||                                                                    ||");
+		System.out.println("||   Limited Voucher:  Second purchase items can enjoy 50% off !!!    ||");
+		System.out.println("||                                                                    ||");
+		System.out.println("||***Term & condition apply                        Valid Date: 1 year ||");
+		System.out.println("||====================================================================||");
+		System.out.println("||____________________________________________________________________||");
+		
+	}
+}
+
+
+// NUR AQIL NAJJAH BINTI RUZAIDI (287491)
+
+
+package assign;
+
+import java.util.Scanner;
+
+public class Garden2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		personalbackground();
+		productprovide();
+		afterservice();
+	}
+		
+		
+		
+		public static void personalbackground() {
+			
+		for (int z=0; z<80;z++) {
+			System.out.print("*");
+		}
+		System.out.println("\n\n WELCOME TO PERDANA BOTANICAL GARDEN\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("*");
+		}
+		Scanner sc=new Scanner(System.in);
+		String[] details= {"name","age","email","phone"};
+		System.out.println("\n\nPlease enter you name: ");
+		details[0]=sc.nextLine();
+		System.out.println("\nPlease enter your age: ");
+		details[1]=sc.nextLine();
+		System.out.println("\nPlease enter your email: ");
+		details[2]=sc.nextLine();
+		System.out.println("\nPlease enter your phone number:  ");
+		details[3]=sc.nextLine();
+		System.out.println();
+		for (int z=0; z<80;z++) {
+			System.out.print("*");
+			}
+		System.out.println("\nPLEASE CHECK YOUR DETAILS");
+		for (int z=0; z<80;z++) {
+			System.out.print("*");
+			}
+		System.out.println();
+		for (int q=0;q<details.length;q++)
+		System.out.println(details[q]);
+		for (int z=0; z<80;z++) {
+			System.out.print("*");
+			}
+
+		System.out.println("\n\nAre you a member of Perdana Botanical Garden?");
+		boolean member = sc.nextBoolean();
+		System.out.println();
+		if (member==true) {
+			for (int i=0; i<80;i++) {
+				System.out.print("*");
+			}
+		System.out.println("\n\n Attention to all members, please check your validation date for membership.  \n Membership renewal notices will be sent by email only and payment"
+				+ " is due by  \n 31 December. Unpaid members as of 1 January will lose membership privileges  \n until"
+				+ " their dues are paid. Thankyou.                                        "
+				+ "\n We will send notification to " + details[2]+ " and deliver message    \n at " 
+				+ details[3] + "\n");
+		for (int i=0; i<80;i++) {
+			System.out.print("*");
+		}
+		}
+		}
+		public static void productprovide() {
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("\n\n3 different citizens and price for each: ");
+		String[][] ticket= {{"Children","Adult","Senior"},
+							{"25","30","45"}};
+		int g,h,i;
+		System.out.println(ticket[0][0]+"       :RM"+ticket[1][0]);
+		System.out.println(ticket[0][1]+"          :RM"+ticket[1][1]);
+		System.out.println(ticket[0][2]+"         :RM"+ticket[1][2]);
+		
+		g=Integer.parseInt(ticket[1][0]); //change string array to integer
+		h=Integer.parseInt(ticket[1][1]);
+		i=Integer.parseInt(ticket[1][2]);
+
+	    System.out.println("\n**TICKET RESERVATION**");
+		
+		System.out.println("\nNumber of children: ");
+		int a = sc.nextInt();
+		
+		System.out.println("\nNumber of adult: ");
+		int b = sc.nextInt();
+		
+		System.out.println("\nNumber of senior: ");
+		int c = sc.nextInt();
+		int no = a + b + c;		
+		
+		System.out.println("We will display the packages that available for " + no + " people which are " +  a + " tickets for children, " + b + 
+				" for adult and " + c + " for senior citizen");
+		
+		System.out.println("\nTo see all the packages that available, please enter 1");
+		int in = sc.nextInt();
+		
+		while(in!=1) {
+			System.out.println("Please try again!");
+			in = sc.nextInt();
+		}
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.print("\n\nPACKAGE A: " + "\n1. Time given: 2 hours" + "\n2. Free parking ticket" + 
+		"\n3. Unlimited Wi-Fi access\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.print("\n\nPACKAGE B: " + "\n1. Time given: 3 hours" + "\n2. Free parking ticket" + 
+		"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.print("\n\nPACKAGE C: " + "\n1. Time given: 4 hours" + "\n2. Free parking ticket" + 
+		"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" + "\n5. Free exclusive Perdana "
+		+ "botanical Garden's shirt and cap per person\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.print("\n\nPACKAGE D: " + "\n1. Time given: 5 to 7 hours" + "\n2. Free parking ticket" + 
+		"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" +
+		"\n5. Free exclusive Perdana Botanical Garden's shirt and cap per person" + 
+		"\n6. Free golden vouchers exclusive from Perdana Botanical Garden" + "\n7. Garden tour guide provided\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.print("\n\nPACKAGE E: " + "\n1. Time given: 24 hours" + "\n2. Free parking ticket" + 
+		"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" +
+		"\n5. Free exclusive Perdana Botanical Garden's shirt and cap per person" + 
+		"\n6. Free golden vouchers exclusive from Perdana Botanical Garden" + "\n7. Garden tour guide provided" + 
+		"\n8. Free access and unlimited time to all fun activities and games :" + "\n   -golf" + "\n   -horse riding" + 
+		"\n   -mini zoo" + "\n   -flower garden\n\n");
+		for (int z=0; z<80;z++) {
+			System.out.print("=");
+		}
+		System.out.println();
+		System.out.println("\nFor the price, please enter 1 ");
+		int t = sc.nextInt();
+		while(t!=1) { 
+			System.out.println("Sorry, wrong code. Please try again");
+		    t = sc.nextInt();
+		}
+		if(t==1) {
+		    double x = ((a*g) + (b*h) + (c*i));
+		    double y = x+30;
+		    double z = y+50;
+		    double xy = z+100;
+		    double ab = xy+200;
+		    System.out.println(" ________________________________________________________________");
+		    System.out.println("| PACKAGES     |" + " FOR MEMBERS            |" + " FOR NON-MEMBERS        |");
+		    System.out.println(" ----------------------------------------------------------------");
+		    System.out.println("|1.PACKAGE A   |   " + (x*0.8) + "                 |" + x + "                   |");
+		    System.out.println("|2.PACKAGE B   |   " + (y*0.8) + "                |" + y + "                   |");
+		    System.out.println("|3.PACKAGE C   |   " + (z*0.8) + "                |" + z + "                   |");
+		    System.out.println("|4.PACKAGE D   |   " + (xy*0.8) + "                |" + xy + "                   |");
+		    System.out.println("|5.PACKAGE E   |   " + (ab*0.8) + "                |" + ab + "                   |");
+		    System.out.println(" ----------------------------------------------------------------");
+		
+		    for (int aq=0; aq<80;aq++) {
+				System.out.print("<");
+			}
+		System.out.println("\n1. -A- PACKAGE A" + "\n2. -B- PACKAGE B" + "\n3. -C- PACKAGE C" + "\n4. -D- PACKAGE D" + "\n5. -E- PACKAGE E" );
+		for (int lm=0; lm<80;lm++) {
+			System.out.print(">");
+		}
+		
+		System.out.println("\nDear ,\nplease enter any of package above to proceed");
+		char p = sc.next().charAt(0);
+		
+		while(p!='A' && p!='B' && p!='C' && p!='D' && p!='E') {
+			System.out.println("Sorry there's no package " + p);
+			System.out.print("Please try again: " );
+			p = sc.next().charAt(0);
+		}
+		
+		if(p=='A') {
+			System.out.print("\n========================================================================================");
+			System.out.print("\nPACKAGE A: " + "\n1. Time given: 2 hours" + "\n2. Free parking ticket" + 
+			"\n3. Unlimited Wi-Fi access");
+			double pricea = ((a*g) + (b*h) + (c*i));
+			double priceab = (pricea*0.8);
+			System.out.println("\n________________________________________________________________________________________");
+			System.out.println("\nNormal price: " + "RM " + pricea + "\nWith member card price(20% off): " + "RM " + priceab);
+			System.out.println("________________________________________________________________________________________");
+			System.out.println("========================================================================================");
+		}
+		
+		else if(p=='B') {
+			System.out.print("\n========================================================================================");
+			System.out.print("\nPACKAGE B: " + "\n1. Time given: 3 hours" + "\n2. Free parking ticket" + 
+			"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks");
+			double pricea = ((a*g) + (b*h) + (c*i));
+			double priceac = pricea+30;
+			double pricead = priceac*0.8;
+			System.out.println("\n________________________________________________________________________________________");
+			System.out.println("\nNormal price: " + "RM " + priceac + "\nWith member card price(20% off): " + "RM " + pricead);
+			System.out.println("________________________________________________________________________________________");
+			System.out.println("========================================================================================");
+		}
+		
+		else if(p=='C') {
+			System.out.print("\n========================================================================================");
+			System.out.print("\nPACKAGE C: " + "\n1. Time given: 4 hours" + "\n2. Free parking ticket" + 
+			"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" + "\n5. Free exclusive Perdana "
+			+ "botanical Garden's shirt and cap per person");
+			double pricea = ((a*g) + (b*h) + (c*i));
+			double priceac = pricea+30;
+			double priceae = priceac+50;
+			double priceaf = priceae*0.8;
+			System.out.println("\n________________________________________________________________________________________");
+			System.out.println("\nNormal price: " + "RM " + priceae + "\nWith member card price(20% off): " + "RM " + priceaf);
+			System.out.println("________________________________________________________________________________________");
+			System.out.println("========================================================================================");
+		}
+		
+		else if(p=='D') {
+			
+			System.out.print("\n========================================================================================");
+			System.out.print("\nPACKAGE D: " + "\n1. Time given: 5 to 7 hours" + "\n2. Free parking ticket" + 
+			"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" +
+			"\n5. Free exclusive Perdana Botanical Garden's shirt and cap per person" + 
+			"\n6. Free golden vouchers exclusive from Perdana Botanical Garden" + "\n7. Garden tour guide provided");
+			double pricea = ((a*g) + (b*h) + (c*i));
+			double priceac = pricea+30;
+			double priceae = priceac+50;
+			double priceag = priceae+100;
+			double priceah = priceag*0.8;
+			System.out.println("\n________________________________________________________________________________________");
+			System.out.println("\nNormal price: " + "RM " + priceag + "\nWith member card price(20% off): " + "RM " + priceah);
+			System.out.println("________________________________________________________________________________________");
+			System.out.println("========================================================================================");
+		}
+		
+		else if(p=='E') {
+			
+			System.out.print("\n========================================================================================");
+			System.out.print("\nPACKAGE E: " + "\n1. Time given: 24 hours" + "\n2. Free parking ticket" + 
+			"\n3. Unlimited Wi-Fi access" + "\n4. Free food and drinks" +
+			"\n5. Free exclusive Perdana Botanical Garden's shirt and cap per person" + 
+			"\n6. Free golden vouchers exclusive from Perdana Botanical Garden" + "\n7. Garden tour guide provided" + 
+			"\n8. Free access and unlimited time to all fun activities and games :" + "\n   -golf" + "\n   -horse riding" + 
+			"\n   -mini zoo" + "\n   -flower garden");
+			double pricea = ((a*g) + (b*h) + (c*i));
+			double priceac = pricea+30;
+			double priceae = priceac+50;
+			double priceag = priceae+100;
+			double priceai = priceag+200;
+			double priceaj = priceai*0.8;
+			System.out.println("\n________________________________________________________________________________________");
+			System.out.println("\nNormal price: " + "RM " + priceai + "\nWith member card price(20% off): " + "RM " + priceaj);
+			System.out.println("________________________________________________________________________________________");
+			System.out.println("========================================================================================");
+		}
+		}	
+		}
+		
+		public static void afterservice() {
+			Scanner sc=new Scanner(System.in);
+		System.out.println("\nIf interested, please enter 1 (yes) and if you want to cancel "
+				+ "please enter 2 ");
+		int j = sc.nextInt();
+		while(j!=1 && j!=2) {
+			System.out.println("Wrong code! Try again!");
+			j = sc.nextInt();
+		}
+		
+		switch(j) {
+		case 1:
+			System.out.println("Thankyou ! You can proceed with payment");
+			System.out.println("\nPAYMENT METHOD: \n1.ONLINE BANKING \n2.BANK IN \n3.CASH PAYMENT AT CONVENIENCE STORES");
+			System.out.println("\nPLEASE CHOOSE ");
+			int rp = sc.nextInt();
+			while(rp!=1 && rp!=2 && rp!=3) {
+				System.out.println("INVALID! TRY AGAIN!");
+				rp = sc.nextInt();
+			}
+			if(rp==1) {
+				System.out.println("[1]Maybank2u \n[2]CIMB Clicks \n[3]Public Bank \n[4]RHB Now \n[5]Ambank"
+						+ "\n[6]MyBSN \n[7]UOB \n[8]Affin Bank \n[9]Bank Islam \n[10]HSBC Online \n[11]Standard Chartered Bank");
+				System.out.println("\nPLEASE CHOOSE YOUR BANK TYPE");
+				int nr = sc.nextInt();
+				while(nr!=1 && nr!=2 && nr!=3 && nr!=4 && nr!=5 && nr!=6 && nr!=7 && nr!=8 && nr!=9 && nr!= 10 && nr!=11) {
+					System.out.println("INVALID! TRY AGAIN!");
+					nr = sc.nextInt();
+				}
+				System.out.println("You are now redirecting to the online banking log in page.....");
+				for (int s=2;s>=0;s--) {
+					System.out.println("\nEnter your account password: ");
+					int d = sc.nextInt();
+					System.out.println("Password confirmation: ");
+					int pass = sc.nextInt();
+					if(d==pass) {
+					  System.out.println("Your password is correct and your money have been deducted. Thannkyou for the payment! ");
+					  System.out.println();
+					  break;
+					}
+					else {
+						System.out.print("Your password is incorrect! You have " + s + " chance. ");
+					    System.out.println();
+					}
+					if(s==0) {
+						System.out.print("Sorry, unsuccessful to login! For security, you are unable to continue the login!");	
+						break;
+					}
+				}
+			}
+			else if(rp==2) {
+				System.out.println("Please bank in to our account: 02 0110 1310 8452 (BANK ISLAM)(PERDANA BOTANICAL GARDEN) \n before 12 pm tomorrow. THANKYOU!");
+			}
+			else if(rp==3) {
+				System.out.println("[A] Cash Payment at 7-Eleven \n[B] Cash Payment at KK Mart");
+				System.out.println("\nPlease enter ");
+				char jj = sc.next().charAt(0);
+				while(jj!='A' && jj!='B') {
+					System.out.println("INVALID! TRY AGAIN!");
+					jj = sc.next().charAt(0);
+				}
+				System.out.println("Thankyou! We have notified by your booking! Please pay before tomorrow at 12 pm. Thankyou! ");
+				}
+			int i=0;
+				do {
+					System.out.print("*");
+					i++;
+				} while (i<=80);
+			System.out.print("\nAre you satisfied with our service (Press Y for yes / N for No): ");
+			char service=sc.next().charAt(0);
+			System.out.println();
+			if (service=='Y' || service=='y') {
+				int a=0;
+				while (a<6) {
+					System.out.print("~Thankyou ! (^_^)~ ");
+					a++;
+				 } System.out.println();
+				System.out.println("We hope to serve you again next time!");		
+			} else
+			if (service=='n' || service=='N') {
+				int a=0;
+				while (a<5) {
+					System.out.print("Sorry ! (>_<) ");
+					a++;
+				 } System.out.println();
+				System.out.println("Kindly leave you comment for any issues: ");
+				String comment=sc.next();
+				System.out.println("Thankyou! We will try to improve this problem " + "(" + comment + ")" + " next time!");
+			} else
+			while (service!='Y' && service!='N') {
+				System.out.println("Wrong code ");
+				System.out.println("Kindly leave you comment for any issues: ");
+				String comment=sc.next();
+				System.out.println("Thankyou! We will try to improve this problem " + "(" + comment + ")" + " next time!");
+			}
+			break;
+		case 2:
+			System.out.println("Thankyou for visiting! Hope to see you real soon!");
+			break;
+			}
+	}
+}
+
+
+
+
+// LIM HUI QI ()
+
+
+package assignment3;
+
+import java.util.Scanner;
+
+public class Camera {
+
+	private static Scanner scan;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		String name;
+		String hpNum;
+		String email;
+		String camera="";
+		String acs="";
+		String deliveryTo = "";
+		int warranty;
+		double priceCam = 0;
+		double priceAcs = 0;
+		double priceWty = 0;
+		double total;
+		double deliveryFee=0;
+		double protectionFee;
+		int discount = 0;
+		int menuChoice;
+		int cameraChoice;
+		int typeChoice;
+		int brandChoice;
+		int priceChoice;
+		char protectionC;
+		char buyCam;
+		char buyAcs;
+		int camC = 0;
+		int acsC;
+		int deliC;
+		int numCam = 0;
+		int numAcs = 0;
+		double totCam = 0;
+		double totAcs = 0;
+		char keepGoing = 'N';
+		
+		scan = new Scanner(System.in);
+		
+		System.out.print("Please enter your name: ");
+		name = scan.next();
+		System.out.print("Please enter your contact number: ");
+		hpNum = scan.next();
+		System.out.print("Please enter your email: ");
+		email = scan.next();
+		
+		System.out.println(" 	              _____             ");
+		System.out.println("  	     ___     / [X] \\    _____    ");
+		System.out.println("	 __.|___|.__/_______\\__-LLLLL-__");
+		System.out.println("	/                               \\");
+		System.out.println("	|===============================|");
+		System.out.println("	|            .-'''-.     [__]   |");
+		System.out.println("	|           /.\"\"\"\"\".\\           |");
+		System.out.println("	|          // /\" \"\\ \\\\_)        |");
+		System.out.println("	|          \\\\ \\___/ //          |");
+		System.out.println("	|           \\`.___.'/           |");
+		System.out.println("	|============`-...-' ===========|");
+		System.out.println("	\\@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@/");
+		System.out.println();
+		System.out.println("########## WELCOME TO THE SHOTKIT SHOP ##########");
+		System.out.println();
+		
+		
+		do {
+			
+		System.out.println("---------------------MENU------------------------");
+		System.out.println("1 Cameras Description List");
+		System.out.println("2 Accessories List");
+		System.out.println("3 Delivery and Warranty List");
+		System.out.println("4 Discount / Free Gift List");
+		System.out.println("5 To Buy");
+		System.out.println("6 Exit");
+		System.out.print("Please select a menu option: ");
+		menuChoice = scan.nextInt();
+		System.out.println("");
+		
+		switch(menuChoice)
+		{
+		case 1:
+			System.out.println("===================CAMERA LISTS====================");
+			System.out.println("What you consider when purchasing a camera?");
+			System.out.println("1 Camera's Type");
+			System.out.println("2 Camera's Brand");
+			System.out.println("3 Camera's Price");
+			System.out.print("Please select an option: ");
+			cameraChoice = scan.nextInt();
+			System.out.println();
+			
+			switch(cameraChoice)
+			{
+			case 1: 
+				System.out.println("----------------Camera's Type-----------------");
+				System.out.println("1 Compact camera");
+				System.out.println("2 Mirrorless camera");
+				System.out.println("3 Digital single-lens reflex camera(DSLR)");
+				System.out.print("Please select an option: ");
+				typeChoice = scan.nextInt();
+				System.out.println();
+				
+				switch(typeChoice)
+				{
+				case 1:
+					System.out.println("******************* Compact Type Camera ********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam1(priceCam);
+					cam12(priceCam);
+					cam14(priceCam);
+					System.out.println();
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+
+				case 2:
+
+					System.out.println("***************** Mirrorless Type Camera *******************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam2(priceCam);
+					cam3(priceCam);
+					cam8(priceCam);
+					cam9(priceCam);
+					cam10(priceCam);
+					cam11(priceCam);
+					cam13(priceCam);
+					cam15(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 3:
+
+					System.out.println("******************** DSLR Type Camera **********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam4(priceCam);
+					cam5(priceCam);			
+					cam6(priceCam);
+					cam7(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				default: 
+					System.out.println("Invalid number! Please try again. Thank you~");
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+
+				}
+				break;
+				
+			case 2:
+				System.out.println("--------------Camera's Brand---------------");
+				System.out.println("1 Canon");
+				System.out.println("2 Nikon");
+				System.out.println("3 FujiFilm");
+				System.out.println("4 Sony");
+				System.out.println("5 Leica");	
+				System.out.print("Please select an option: ");
+				brandChoice = scan.nextInt();
+				System.out.println();
+				
+				switch(brandChoice)
+				{
+				case 1:
+
+					System.out.println("************************** CANON ***************************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam1(priceCam);
+					cam2(priceCam);
+					cam3(priceCam);
+					cam4(priceCam);
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 2:
+					
+					System.out.println("************************** NIKON ***************************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam5(priceCam);
+					cam6(priceCam);
+					cam7(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 3:
+
+					System.out.println("************************ FUJIFILM **************************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam8(priceCam);
+					cam9(priceCam);
+					cam10(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 4:
+					
+					System.out.println("************************** SONY ****************************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam11(priceCam);
+					cam12(priceCam);
+					cam13(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 5:
+					
+					System.out.println("************************** LEICA ***************************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam14(priceCam);
+					cam15(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				default: 
+					System.out.println("Invalid number! Please try again. Thank you~");
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+				}
+			
+				break;
+			case 3:
+				System.out.println("--------------Camera's Price---------------");
+				System.out.println("1 RM1500 - RM3000");
+				System.out.println("2 RM3001 - RM5000");
+				System.out.println("3 RM5001 - RM10000");
+				System.out.println("4 More than RM10001");
+				System.out.print("Please select an option: ");
+				priceChoice = scan.nextInt();
+				System.out.println();
+				
+				switch(priceChoice)
+				{
+				case 1:
+					
+					System.out.println("********************* RM1500 ~ RM3000 **********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam1(priceCam);
+					cam2(priceCam);
+					cam8(priceCam);
+					cam5(priceCam);
+					cam3(priceCam);
+					cam11(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 2:
+					
+					System.out.println("********************* RM3001 ~ RM5000 **********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam12(priceCam);
+					cam9(priceCam);
+					cam4(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+
+				case 3:
+				
+					System.out.println("********************* RM5001 ~ RM10000 *********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam6(priceCam);
+					cam13(priceCam);
+					cam10(priceCam);
+					cam7(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				case 4:
+					
+					System.out.println("******************** More than RM10001 *********************");
+					System.out.println("////////////////////////////////////////////////////////////");
+					cam14(priceCam);
+					cam15(priceCam);
+					
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+					break;
+					
+				default: 
+					System.out.println("Invalid number! Please try again. Thank you~");
+					keepGoing = keepGoingMethod(keepGoing);
+					System.out.println();
+				}
+				break;
+			}
+			break;
+		case 2:
+			
+			printAcsList ();
+			keepGoing = keepGoingMethod(keepGoing);
+			System.out.println();
+			break;
+			
+		case 3:
+			
+			printDeliWtyList();
+			keepGoing = keepGoingMethod(keepGoing);
+			System.out.println();
+			break;
+			
+		case 4:
+
+			System.out.println("================== GIFT & DISCOUNT ====================");
+			System.out.println();
+			System.out.println("1. Camera price exceed RM 2000");
+			freeGift2000();
+			System.out.println(" - 10% Discount for other Accessories");
+			System.out.println();
+		
+			System.out.println("2. Camera price exceed RM 3500");
+			freeGift3500();
+			System.out.println(" - 15% Discount for other Accessories");
+			System.out.println();
+		
+			System.out.println("3. Camera price exceed RM 5000");
+			freeGift5000();
+			System.out.println(" - 20% Discount for other Accessories");
+			System.out.println("=======================================================");
+			
+			keepGoing = keepGoingMethod(keepGoing);
+			System.out.println();
+			break;
+		
+		case 5:
+			
+			String nameCamera [] = new String[15];
+			nameCamera[0] = "Canon G7X Mark II";
+			nameCamera[1] = "Canon M200";
+			nameCamera[2] = "Sony A6000";
+			nameCamera[3] = "Nikon D5600 DX";
+			nameCamera[4] = "Canon M50";
+			nameCamera[5] = "FujiFilm X-A7";
+			nameCamera[6] = "FujiFilm X-T30";
+			nameCamera[7] = "Sony A6400";
+			nameCamera[8] = "Canon 90D";
+			nameCamera[9] = "Nikon D750";
+			nameCamera[10] = "FujiFilm X100V";
+			nameCamera[11] = "Sony A7 III";
+			nameCamera[12] = "Nikon D850";
+			nameCamera[13] = "Leica Q2";
+			nameCamera[14] = "Leica M10";
+	
+			System.out.print("Do you want to buy camera(s)?(Y/N): ");
+			buyCam = scan.next().charAt(0);
+			System.out.println();
+			
+			if (buyCam == 'Y' || buyCam == 'y')
+			{
+			buyCamList();
+			numCam = numCamMethod(numCam);
+			for (int x=0; x<numCam; x++)
+			{
+			if (buyCam=='Y'|| buyCam=='y')
+			{
+				
+				System.out.print("Please enter the code number of camera you want to buy(1-15): ");
+				camC  = scan.nextInt();
+				System.out.println("////////////////////////////////////////////////////////////");
+				
+				if (camC == 1)
+				{
+					priceCam = cam1(priceCam);
+
+				}
+				else if (camC == 2)
+				{
+					priceCam = cam2(priceCam);
+				}
+				else if (camC == 3)
+				{
+					priceCam = cam11(priceCam);
+				}
+				else if (camC == 4)
+				{
+					priceCam = cam5(priceCam);
+				}		
+				else if (camC == 5)
+				{
+					priceCam = cam3(priceCam);
+				}
+				else if (camC == 6)
+				{
+					priceCam = cam9(priceCam);
+				}
+				else if (camC == 7)
+				{
+					priceCam = cam8(priceCam);
+				}
+				else if (camC == 8)
+				{
+					priceCam = cam12(priceCam);
+				}	
+				else if (camC == 9)
+				{
+					priceCam = cam4(priceCam);
+				}
+				else if (camC == 10)
+				{
+					priceCam = cam6(priceCam);
+				}
+				else if (camC == 11)
+				{
+					priceCam = cam10(priceCam);
+				}
+				else if (camC == 12)
+				{
+					priceCam = cam13(priceCam);
+				}
+				else if (camC == 13)
+				{
+					priceCam = cam7(priceCam);
+				}
+				else if (camC == 14)
+				{
+					priceCam = cam14(priceCam);
+				}
+				else if (camC == 15)
+				{
+					priceCam = cam15(priceCam);
+				}
+				
+				totCam = totCam + priceCam;
+				System.out.println();
+			}
+			}
+			
+			}
+
+			System.out.print("Do you wants to buy an accessories?(Y/N) : ");
+			buyAcs = scan.next().charAt(0);
+			System.out.println();
+			
+			
+			if(buyAcs == 'Y' || buyAcs == 'y')
+			{
+			buyAcsList();
+			
+			numAcs = numAcsMethod(numAcs);
+			for (int y=0; y<numAcs; y++)
+			{
+				
+			if (buyAcs == 'Y' || buyAcs=='y')
+			{
+				String[] nameAcs = new String[11];
+				nameAcs[0] = "Memory Card SanDisk Extreme 32GB";
+				nameAcs[1] = "Memory Card SanDisk Extreme 64GB";
+				nameAcs[2] = "Memory Card SanDisk Extreme 128GB";
+				nameAcs[3] = "Tripod";
+				nameAcs[4] = "Battery";
+				nameAcs[5] = "Camera Strap";
+				nameAcs[6] = "Camera Bag";
+				nameAcs[7] = "Cleaning Kit";
+				nameAcs[8] = "Wide Angle Lens(24mm-35mm)";
+				nameAcs[9] = "Standard Lens(35mm-85mm)";
+				nameAcs[10] = "Short Telephoto Lens(85mm-200mm)";
+				
+				double[] priceAcsArray = new double[11];
+				priceAcsArray[0] = 32.9;
+				priceAcsArray[1] = 61.9;
+				priceAcsArray[2] = 119;
+				priceAcsArray[3] = 75.5;
+				priceAcsArray[4] = 99;
+				priceAcsArray[5] = 39.9;
+				priceAcsArray[6] = 79.9;
+				priceAcsArray[7] = 30.9;
+				priceAcsArray[8] = 249;
+				priceAcsArray[9] = 349;
+				priceAcsArray[10] = 549;
+				
+				System.out.print("Please enter the code number of accessory you want to buy(1-11): ");
+				acsC  = scan.nextInt();
+				
+				if (acsC == 1)
+				{
+					acs = nameAcs[0];
+					priceAcs = priceAcsArray[0];
+				}
+				else if (acsC == 2)
+				{
+					acs = nameAcs[1];
+					priceAcs = priceAcsArray[1];
+				}
+				else if (acsC == 3)
+				{
+					acs = nameAcs[2];
+					priceAcs = priceAcsArray[2];
+				}
+				else if (acsC == 4)
+				{
+					acs = nameAcs[3];
+					priceAcs = priceAcsArray[3];
+				}
+				else if (acsC == 5)
+				{
+					acs = nameAcs[4];
+					priceAcs = priceAcsArray[4];
+				}
+				else if (acsC == 6)
+				{
+					acs = nameAcs[5];
+					priceAcs = priceAcsArray[5];
+				}
+				else if (acsC == 7)
+				{
+					acs = nameAcs[6];
+					priceAcs = priceAcsArray[6];
+				}
+				else if (acsC == 8)
+				{
+					acs = nameAcs[7];
+					priceAcs = priceAcsArray[7];
+				}
+				else if (acsC == 9)
+				{
+					acs = nameAcs[8];
+					priceAcs = priceAcsArray[8];
+				}
+				else if (acsC == 10)
+				{
+					acs = nameAcs[9];
+					priceAcs = priceAcsArray[9];
+				}
+				else if (acsC == 11)
+				{
+					acs = nameAcs[10];
+					priceAcs = priceAcsArray[10];
+				}
+				
+				else
+				{
+					System.out.println("Invalid number! Please try again~");
+					keepGoing = keepGoingMethod(keepGoing);
+				}
+				
+				totAcs = totAcs + priceAcs;
+				System.out.println("Accessory: "+ acs);
+				System.out.printf("Accessory's Price: RM%.2f\n", priceAcs);
+				System.out.println();
+				
+			}
+			}
+			System.out.printf("Total Accessories Price: RM%.2f\n", totAcs);
+			System.out.println();
+			}
+			buyDeliWtyList();
+			System.out.print("Please enter the code number of delivery you prefer(1-3):");
+			deliC = scan.nextInt();
+			
+			if (deliC == 1)
+			{
+				deliveryTo = "West Malaysia";
+				deliveryFee = 6.9;
+			}
+			else if(deliC == 2)
+			{
+				deliveryTo = "East Malaysia";
+				deliveryFee = 11.9;
+			}
+			else if(deliC == 3)
+			{
+				deliveryTo = "Overseas";
+				deliveryFee = 20.9;
+			}
+			else 
+			{
+				System.out.println("Invalid number! Please try again~");
+				keepGoing = keepGoingMethod(keepGoing);
+				
+			}
+			System.out.println("Delivery Type: "+ deliveryTo);
+			System.out.printf("Delivery Fee: RM%.2f\n", deliveryFee);
+			System.out.println();
+			
+			System.out.print("Do you want to add-on Electronics Protection?(Y/N): ");
+			protectionC = scan.next().charAt(0);
+			
+			if (protectionC == 'Y' || protectionC == 'y')
+				protectionFee = 150.20;
+			else
+				protectionFee = 0;
+			
+			System.out.printf("Protection Fee: RM%.2f\n", protectionFee);
+			System.out.println();
+			
+			System.out.print("Add-on Warranty (Years) max=3	: ");
+			warranty = scan.nextInt();
+			
+			if (warranty == 0)
+			{
+				priceWty =0;
+				System.out.println("Warranty: "+ warranty + "years");
+				System.out.printf("Warranty Fee: RM%.2f", priceWty);
+			}
+			else if (warranty == 1)
+			{
+				priceWty = 50;
+				System.out.println("Warranty: "+ warranty + "years");
+				System.out.printf("Warranty Fee: RM%.2f", priceWty);
+			}
+			else if (warranty == 2)
+			{	
+				priceWty = 110;
+				System.out.println("Warranty: "+ warranty + "years");
+				System.out.printf("Warranty Fee: RM%.2f", priceWty);
+			}
+			else if (warranty == 3)
+			{
+				priceWty = 150;
+				System.out.println("Warranty: "+ warranty + "years");
+				System.out.printf("Warranty Fee: RM%.2f", priceWty);
+			}
+			else
+			{
+				System.out.println("Sorry~ The warranty can only add-on for 3 years in maximum");
+				System.out.println("Please try again~");
+				keepGoing = keepGoingMethod(keepGoing);
+			}
+			
+			if (priceCam > 5000)
+				discount = 20;
+			else if (priceCam > 3500)
+				discount = 15;
+			else if (priceCam > 2000)
+				discount = 10;
+			
+		
+			total = totCam + deliveryFee + protectionFee + priceWty + totAcs*((100-discount)/100);
+			
+			System.out.println("");
+			System.out.println("_____________________________________________________________________");
+			System.out.println("                  WELCOME TO THE SHOTKIT SHOP ^.^                    ");
+			System.out.println("                             INVOICE                                 ");
+			System.out.println("_____________________________________________________________________");
+			System.out.println("SHOTKIT SHOP" + "					" +java.time.LocalDate.now());
+			System.out.println("06-2862660");
+			System.out.println("shotkit@gmail.com");
+			System.out.println("");
+			System.out.println("Mr/Mrs " +name);
+			System.out.println(hpNum);
+			System.out.println(email);
+			System.out.println();
+			System.out.println("Number of camera                              : " + numCam);
+			System.out.println("Number of accessories                         : " + numAcs);
+			System.out.println("Add-on Warranty                               : " + warranty + "years");
+			System.out.println();
+			
+			System.out.printf("Total camera(s) price                         : RM %.2f\n", totCam);
+			System.out.printf("Total accessories's price                     : RM %.2f\n", totAcs);
+			System.out.println("Discount for add-on accessories               : " + discount +"%");
+			System.out.println();
+			System.out.printf("Delivery Fee                                  : RM %.2f\n", deliveryFee);
+			System.out.printf("Electronics Protection Fee                    : RM %.2f\n", protectionFee);
+			System.out.printf("Warranty Price                                : RM %.2f\n", priceWty);
+			System.out.println("_____________________________________________________________________");
+			System.out.printf("Total                                         : RM %.2f\n", total);
+			System.out.println("_____________________________________________________________________");
+			System.out.println();
+			
+			System.out.printf("You'll get %d sets of free gifts below!: \n", numCam);
+			if (totCam > 5000)
+			{
+				freeGift5000();
+			}
+			else if (totCam > 3500)
+			{
+				freeGift3500();
+			}
+			else if (totCam > 2000)
+			{
+				freeGift2000();
+			}
+			
+			
+			System.out.println();
+			System.out.println("Thank you very much! See you again ~");
+			keepGoing = 'N';
+			break;
+		
+		case 6: 
+			System.out.println("Thank you very much! See you again ~");
+			keepGoing = 'N';
+			break;
+			
+		default: 
+			System.out.println("Please enter the number between 1 - 6 ~ Thank you");
+			keepGoing = keepGoingMethod(keepGoing);
+		}
+		
+		} while (keepGoing == 'Y' || keepGoing == 'y');
+		
+	}
+	public static double cam1 (double priceCam)
+	{
+		System.out.println("Brand		: Canon");
+		System.out.println("Camera		: G7X_Mark_II");
+		System.out.println("Price		: RM 1779");
+		System.out.println("Features	: - Versatile Zoom Range");
+		System.out.println("		: - Robust Body");
+		System.out.println("		: - Good in LowLight");
+		System.out.println("		: - Great Image Quality");
+		System.out.println("		: - 20.1 Megapixel CMOS sensor ");
+		System.out.println("		: - New DIGIC 7 Imaging Processor");
+		System.out.println("Weight		: 302g");
+		System.out.println("Type		: Compact");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 1779;
+		
+		return priceCam;
+	}
+	
+	public static double cam2 (double priceCam)
+	{
+		System.out.println("Brand		: Canon");
+		System.out.println("Camera		: M200");
+		System.out.println("Price		: RM 1999");
+		System.out.println("Features	: - cost effective");
+		System.out.println("		: - Easy to use");
+		System.out.println("		: - novice camera");
+		System.out.println("		: - 24.1MP APS-C CMOS Sensor");
+		System.out.println("		: - DIGIC 8 Image Processor");
+		System.out.println("		: - Weight: 262g");
+		System.out.println("Weight		: 262g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 1999;
+		return priceCam;
+	}
+	
+	public static double cam3 (double priceCam)
+	{
+		System.out.println("Brand		: Canon");
+		System.out.println("Camera		: M50");
+		System.out.println("Price		: RM 2949");
+		System.out.println("Features	: - Compact");
+		System.out.println("		: - Easy to use");
+		System.out.println("		: - Built-in Electronic Viewfinder");
+		System.out.println("		: - Fast & Accurate");
+		System.out.println("		: - 24.1Megapixel APS-C CMOS sensor ");
+		System.out.println("		: - DIGIC 8 Image Processor");
+		System.out.println("		: - Weight: 387g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 2949;
+		return priceCam;
+	}
+	
+	public static double cam4 (double priceCam)
+	{
+		System.out.println("Brand		: Canon");
+		System.out.println("Camera		: 90D");
+		System.out.println("Price		: RM 4599");
+		System.out.println("Features	: - Great Image Quality");
+		System.out.println("		: - High-speed Continuous Shooting");
+		System.out.println("		: - Multi-controller Customization");
+		System.out.println("		: - Versatile");
+		System.out.println("		: - 32.5 Megapixel CMOS (APS-C) sensor");
+		System.out.println("		: - DIGIC 8 image processor");
+		System.out.println("		: - Weight: 701g");
+		System.out.println("Type		: DSLR");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 4599;
+		return priceCam;
+	}
+	
+	public static double cam5 (double priceCam)
+	{
+		System.out.println("Brand		: Nikon");
+		System.out.println("Camera		: D5600 DX");
+		System.out.println("Price		: RM 2229");
+		System.out.println("Features	: - Exceptional Image Quality");
+		System.out.println("		: - Intuitive Controls");
+		System.out.println("		: - Great Battery Life");
+		System.out.println("		: - SnapBridge");
+		System.out.println("		: - 24.2MP DX format CMOS sensor");
+		System.out.println("		: - Ex peed 4 image processor");
+		System.out.println("		: - Weight: 465g");
+		System.out.println("Type		: DSLR");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 2229;
+		return priceCam;
+	}
+	
+	public static double cam6 (double priceCam)
+	{
+		System.out.println("Brand		: Nikon");
+		System.out.println("Camera		: D750");
+		System.out.println("Price		: RM 5090");
+		System.out.println("Features	: - Vari-angle LCD Display");
+		System.out.println("		: - Compact & Lightweight");
+		System.out.println("		: - Powerful 51-point AF");
+		System.out.println("		: - HD Video Capabilities");
+		System.out.println("		: - 24.3 Megapixel CMOS image sensor");
+		System.out.println("		: - expeed 4 image processor");
+		System.out.println("		: - Weight: 750g");
+		System.out.println("Type		: DSLR");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 5090;
+		return priceCam;
+	}
+	
+	public static double cam7 (double priceCam)
+	{
+		System.out.println("Brand		: Nikon");
+		System.out.println("Camera		: D850");
+		System.out.println("Price		: RM 9099");
+		System.out.println("Features	: - Extraordinary Resolution");
+		System.out.println("		: - Outstanding Battery Performance");
+		System.out.println("		: -Tilting Touchscreen");
+		System.out.println("		: - Outstanding Dynamic Range");
+		System.out.println("		: - 45.7 megapixels of extraordinary resolution");
+		System.out.println("		: - back side illuminated (BSI) full frame image sensor");
+		System.out.println("		: - Weight: 915g");
+		System.out.println("Type		: DSLR");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 9099;
+		return priceCam;
+	}
+	
+	public static double cam8 (double priceCam)
+	{
+		System.out.println("Brand		: FujiFilm");
+		System.out.println("Camera		: X-T30");
+		System.out.println("Price		: RM 3379");
+		System.out.println("Features	: - Great Value for Money");
+		System.out.println("		: - Robust Body");
+		System.out.println("		: - Amazing Autofocus");
+		System.out.println("		: - Excellent Image Quality");
+		System.out.println("		: - Improved Low-Light Perfomance");
+		System.out.println("		: - 26.1MP BSI APS-C X-Trans CMOS 4 image sensor");
+		System.out.println("		: - X-Processor 4 quad-core CPU");
+		System.out.println("Weight		: 383g");
+		System.out.println("Type		: Compact");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 3379;
+		return priceCam;
+	}
+	
+	public static double cam9 (double priceCam)
+	{
+		System.out.println("Brand		: FujiFilm");
+		System.out.println("Camera		: X-A7");
+		System.out.println("Price		: RM 2999");
+		System.out.println("Features	: - Film mode");
+		System.out.println("		: - retro look");
+		System.out.println("		: - HD picture quality");
+		System.out.println("		: - 24.2 Megapixel APS-C CMOS sensor");
+		System.out.println("		: - Weight: 271g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 2999;
+		return priceCam;
+	}
+	
+	public static double cam10 (double priceCam)
+	{
+		System.out.println("Brand		: FujiFilm");
+		System.out.println("Camera		: X100V");
+		System.out.println("Price		: RM 5899");
+		System.out.println("Features	: - Iconic Design");
+		System.out.println("		: - Amazing Lens Quality");
+		System.out.println("		: - Hybrid Viewfinder");
+		System.out.println("		: - Compact size");
+		System.out.println("		: - 26.1MP X-Trans CMOS 4 sensor");
+		System.out.println("		: - X-Processor 4 Image Processor");
+		System.out.println("		: - Weight: 478g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 5899;
+		return priceCam;
+	}
+	
+	public static double cam11 (double priceCam)
+	{
+		System.out.println("Brand		: Sony");
+		System.out.println("Camera		: A6000");
+		System.out.println("Price		: RM 2199");
+		System.out.println("Features	: - Hybrid AF");
+		System.out.println("		: - Tilting LCD");
+		System.out.println("		: - Up to 11 FPS Continuous Shooting");
+		System.out.println("		: - Compact");
+		System.out.println("		: - 24.2MP full frame image sensor");
+		System.out.println("		: - BIONZ X Image Processor");
+		System.out.println("		: - Weight: 344g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 2199;
+		return priceCam;
+	}
+	
+	public static double cam12 (double priceCam)
+	{
+		System.out.println("Brand		: Sony");
+		System.out.println("Camera		: A6400");
+		System.out.println("Price		: RM 3899");
+		System.out.println("Features	: - Tracking focus");
+		System.out.println("		: - Metal body");
+		System.out.println("		: - strong battery life");
+		System.out.println("		: - 24MP APS-C sensor");
+		System.out.println("		: - New Bionz X processor");
+		System.out.println("		: - Weight: 396g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 3899;
+		return priceCam;
+	}
+	
+	public static double cam13 (double priceCam)
+	{
+		System.out.println("Brand		: Sony");
+		System.out.println("Camera		: A7 III");
+		System.out.println("Price		: RM 8588.90");
+		System.out.println("Features	: - AF supports A-mount Lenses");
+		System.out.println("		: - New Sensor, Evolved Processor");
+		System.out.println("		: - Continuous Shooting");
+		System.out.println("		: - 693 Phase-detection");
+		System.out.println("		: - Advanced 24.2MP BSI full frame Image Sensor w/ 1.8X readout speed");
+		System.out.println("		: - BIONZ X Image Processor ");
+		System.out.println("		: - Weight: 650g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 8588.9;
+		return priceCam;
+	}
+	
+	public static double cam14 (double priceCam)
+	{
+		System.out.println("Brand		: Leica");
+		System.out.println("Camera		: Q2");
+		System.out.println("Price		: RM 25260");
+		System.out.println("Features	: - Ultimate Image Quality");
+		System.out.println("		: - Beautiful Design");
+		System.out.println("		: - Best EVF/Screen");
+		System.out.println("		: - 47.3 Megapixel full frame sensor");
+		System.out.println("Weight		: 718g");
+		System.out.println("Type		: Compact");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 25260;
+		return priceCam;
+	}
+	
+	public static double cam15 (double priceCam)
+	{
+		System.out.println("Brand		: Leica");
+		System.out.println("Camera		: M10");
+		System.out.println("Price		: RM 27352");
+		System.out.println("Features	: - pared-down physical design");
+		System.out.println("		: - Rear LCD monitor");
+		System.out.println("		: - slimmest camera body");
+		System.out.println("		: - 24MP Full-Frame CMOS Sensor");
+		System.out.println("		: - Leica Maestro II Image Processor");
+		System.out.println("		: - Weight: 660g");
+		System.out.println("Type		: Mirrorless");
+		System.out.println("////////////////////////////////////////////////////////////");
+		priceCam = 27352;
+		return priceCam;
+	}
+	
+	public static char keepGoingMethod (char keepGoing)
+	{
+		System.out.print("Do you want to keep going?(Y/N): ");
+		keepGoing = scan.next().charAt(0);
+		
+		return keepGoing;
+	}
+	
+	public static int numCamMethod (int numCam)
+	{
+		System.out.print("How many camera you want to buy?: ");
+		numCam = scan.nextInt();
+		return numCam;
+	}
+	
+	public static int numAcsMethod(int numAcs)
+	{
+		System.out.print("How many accessories you want to buy?: ");
+		numAcs = scan.nextInt();
+		
+		return numAcs;
+	}
+	
+	public static void printAcsList ()
+	{
+		System.out.println("===================ACCESSORIES=============================PRICE========");
+		System.out.println("1. Memory Card SanDisk Extreme 32GB 90 Mb/s Card	: RM 32.90");
+		System.out.println("2. Memory Card SanDisk Extreme 64GB 90 Mb/s Card	: RM 61.90");
+		System.out.println("3. Memory Card SanDisk Extreme 128GB 90 Mb/s Card	: RM 119.00");
+		System.out.println("4. Tripod						: RM 75.50");
+		System.out.println("5. Battery						: RM 99.00");
+		System.out.println("6. Camera Strap						: RM 39.90");
+		System.out.println("7. Camera Bag						: RM 79.90");
+		System.out.println("8. Cleaning Kit						: RM 30.90");
+		System.out.println("9. Wide Angle Lens(24mm-35mm)				: RM 249.00");
+		System.out.println("10. Standard Lens(35mm-85mm)				: RM 349.00");
+		System.out.println("11. Short Telephoto Lens(85mm-200mm)			: RM 549.00");
+		System.out.println("========================================================================");
+	}
+	
+	public static void printDeliWtyList()
+	{
+		System.out.println("===========DELIVERY FEE==================PRICE=========");
+		System.out.println("	West Malaysia 		||	RM 6.90	");
+		System.out.println(" 	East MAlaysia		||	RM 11.90");
+		System.out.println(" 	Overseas		||	RM 20.90");
+		System.out.println("	Electronics Protection 	||	RM 150.20");
+		System.out.println("=======================================================");
+		System.out.println();
+	
+		System.out.println("=======ADD-ON WARRANTY====================PRICE========");
+		System.out.println("	  1 Year		||	  RM 50");
+		System.out.println("   	  2 Years		||	  RM 110");
+		System.out.println("   	  3 Years		||	  RM 150");
+		System.out.println("=======================================================");
+		System.out.println("# Manufacturer warranty --> 1 year");
+		System.out.println();
+	}
+	
+	public static void freeGift2000()
+	{
+		System.out.println(" - 32GB Memory Card");
+		System.out.println(" - Camera Strap");
+	}
+	
+	public static void freeGift3500()
+	{
+		System.out.println(" - 32GB Memory Card");
+		System.out.println(" - Camera Strap");
+		System.out.println(" - Camera Bag");
+		System.out.println(" - Cleaning Kit");
+	}
+	
+	public static void freeGift5000()
+	{
+		System.out.println(" - 32GB Memory Card");
+		System.out.println(" - Camera Strap");
+		System.out.println(" - Camera Bag");
+		System.out.println(" - Cleaning Kit");
+		System.out.println(" - Tripod");
+		System.out.println(" - Battery");
+	}
+	
+	public static void buyCamList()
+	{
+		System.out.println("=====================PRICE LISTS=====================");
+		System.out.println("   Camera                                Price");
+		System.out.println("-------------------------------------------------");
+		System.out.println("1. Canon G7X Mark II                   : RM 1779");
+		System.out.println("2. Canon M200                          : RM 1999");
+		System.out.println("3. Sony A6000                          : RM 2199");
+		System.out.println("4. Nikon D5600 DX                      : RM 2229");
+		System.out.println("5. Canon M50                           : RM 2949");
+		System.out.println("6. FujiFilm X-A7                       : RM 2999");
+		System.out.println("7. FujiFilm X-T30                      : RM 3379");
+		System.out.println("8. Sony A6400                          : RM 3899");
+		System.out.println("9. Canon 90D                           : RM 4599");
+		System.out.println("10. Nikon D750                         : RM 5090");
+		System.out.println("11. FujiFilm X100V                     : RM 5899");
+		System.out.println("12. Sony A7 III                        : RM 8588.90");
+		System.out.println("13. Nikon D850                         : RM 9099");
+		System.out.println("14. Leica Q2                           : RM 25260");
+		System.out.println("15. Leica M10                          : RM 27352");
+		System.out.println("=====================================================");
+	}
+	
+	public static void buyAcsList()
+	{
+		System.out.println("=====================ACCESSORIES=====================");
+		System.out.println("   Accessories                           Price");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("1. Memory Card SanDisk Extreme 32GB    : RM 32.90");
+		System.out.println("2. Memory Card SanDisk Extreme 64GB    : RM 61.90");
+		System.out.println("3. Memory Card SanDisk Extreme 128GB   : RM 119.00");
+		System.out.println("4. Tripod                              : RM 75.50");
+		System.out.println("5. Battery                             : RM 99.00");
+		System.out.println("6. Camera Strap                        : RM 39.90");
+		System.out.println("7. Camera Bag                          : RM 79.90");
+		System.out.println("8. Cleaning Kit                        : RM 30.90");
+		System.out.println("9. Wide Angle Lens(24mm-35mm)          : RM 249.00");
+		System.out.println("10. Standard Lens(35mm-85mm)           : RM 349.00");
+		System.out.println("11. Short Telephoto Lens(85mm-200mm)   : RM 549.00");
+		System.out.println("=====================================================");
+	}
+	
+	public static void buyDeliWtyList()
+	{
+		System.out.println("====================DELIVERY FEE=====================");
+		System.out.println("   Delivery Fee                          Price ");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("1. West Malaysia                         RM 6.90	");
+		System.out.println("2. East MAlaysia                         RM 11.90");
+		System.out.println("3. Overseas                              RM 20.90");
+		System.out.println("   Electronics Protection                RM 150.20");
+		
+		System.out.println("======================WARRANTY=======================");		
+		System.out.println("   Add-On Warranty                       Price   ");
+		System.out.println("-----------------------------------------------------");
+		System.out.println("1. 1 Year                                RM 50");
+		System.out.println("2. 2 Years                               RM 110");
+		System.out.println("3. 3 Years                               RM 150");
+		System.out.println("=====================================================");
+		System.out.println("Protection Fee: RM150.20");
+		System.out.println("# Manufacturer warranty --> 1 year");
+	}
+	
+}
+
+
+
+
+// YAP JIA JUN (287652)
+
+
+package assignment;
+
+import java.util.Scanner;
+
+import java.util.Arrays;
+
+public class ArraysToMethod {
+
+				public int max(int [] array) {
+				      int max = 0;
+
+				      for(int i=0; i<array.length; i++ ) {
+				         if(array[i]>max) {
+				            max = array[i];
+				         }
+				      }
+				      return max;
+				   }
+
+				   public int min(int [] array) {
+				      int min = array[0];
+				   
+				      for(int i = 0; i<array.length; i++ ) {
+				         if(array[i]<min) {
+				            min = array[i];
+				         }
+				      }
+				      return min;
+				   }
+				  
+				   public static void main(String args[]) {
+					    Scanner sc = new Scanner(System.in);
+					    Assignmnet3 u= new Assignmnet3();
+					    u.main(args);
+					    String name;
+						String gender;
+						String advisory;
+
+						System.out.println("---------------------------------------------------------------");
+						System.out.println("MYTHERESA : Online Platform for all luxury items");
+						System.out.println("---------------------------------------------------------------");
+						System.out.println("Customer Service Team at +49 89 127695-101 or customercare@mytheresa.com");
+						System.out.println("");
+						System.out.println("Welcome to MYTHERESA, online platform for all luxury items! ");
+						System.out.println("This platform only provide new and genuine luxury item.");
+						System.out.println();
+						
+						System.out.println("1. Please enter your full name: ");
+						name = sc.nextLine();
+						System.out.println("2. Please enter your gender: ");
+						gender= sc.nextLine();
+						System.out.println("Please select our system advisory before you purchase any of the clothes package. enter 'y' to continue with our shop advisory system and 'n' for no");
+						advisory = sc.nextLine();
+						
+				      System.out.println("Welcome Dear customer, Thank you very much for choosing our shop!");
+				      System.out.println("Dear customer, we will recommend the most suitable clothes package for you!");
+				      System.out.println("We want to thank you for trusting our shop advisory.");
+				      System.out.println();
+				      System.out.println("Now, let's find the ideal item for you.");
+
+						System.out.println("===Clothes package===");
+						System.out.println("   1.  Package A   (Casual Clothes)|");
+						System.out.println("   Consists of: Tee           |"+ " RM 450");
+						System.out.println("                Pants         |"+ " RM 950");
+						System.out.println("                Sweater       |"+ " RM 1000");
+						System.out.println("   Total original price           = RM 2400");
+						
+						System.out.println("   2.  Package B   (Comfy Clothes)|");
+						System.out.println("   Consists of: Shorts        |"+ " RM 580");
+						System.out.println("                Blouse        |"+ " RM 1450");
+						System.out.println("                Hoodies       |"+ " RM 680");
+						System.out.println("   Total original price           = RM 2710");
+						
+						System.out.println("   3.  Package C   (Formal Clothes For Women)|");
+						System.out.println("   Consists of: Skirt         |"+ " RM 650");
+						System.out.println("                Dress         |"+ " RM 3500");
+						System.out.println("                Jacket        |"+ " RM 840");
+						System.out.println("   Total original price           = RM 4990");
+						
+						System.out.println("   4.  Package D   (Formal Clothes For Men)|");
+						System.out.println("   Consists of: Polo shirt    |"+ " RM 550");
+						System.out.println("                Suit jacket   |"+ " RM 2000");
+						System.out.println("                Coat          |"+ " RM 3800");
+						System.out.println("   Total original price           = RM 6350");
+						System.out.println();
+				      System.out.println("Enter the number of clothes package price that are going to be compared:");
+				      int size = sc.nextInt();
+				      int[] myArray = new int[size];
+				      System.out.println("Enter the price for each of the clothes package:");
+
+				      for(int i=0; i<size; i++) {
+				         myArray[i] = sc.nextInt();
+				      }
+				      ArraysToMethod m = new ArraysToMethod();
+				      System.out.println("The most expensive clothes package price : " + m.max(myArray));
+				      System.out.println("The most economic clothes package price : " + m.min(myArray));
+				      System.out.println("Customer you're advised to choose according to your own capability!");
+				      System.out.println("**************************************************************");
+				      System.out.println("Choose Package A! If you're looking for some casual clothes.");
+				      System.out.println("Choose Package B! If you're looking for some comfy clothes.");
+				      System.out.println("Choose the Package C! If you are a female customer and ready for some formal places.");
+				      System.out.println("Choose the Package D! If you are a male customer and ready for some formal places.");
+				      System.out.println("**************************************************************");
+				      System.out.println("Once again thank you for choosing our shop advisory!");
+				      System.out.println("We hope that it will help you and see you next time!");
+				      System.out.println();
+				      System.out.println("**************************************************************");
+				 
+						String choice;
+						String size1;
+						String member;
+						String id;
+						String renew;
+						String duration;
+						String clothes;
+						String clothes2;
+						String size2;
+						double Membership_fee= 20;
+						double oriPrice;
+						double oriPrice2;
+
+				System.out.println("===Clothes package===");
+				System.out.println("   1.  Package A   |");
+				System.out.println("   Consists of: Tee           |"+ " RM 450");
+				System.out.println("                Pants         |"+ " RM 950");
+				System.out.println("                Sweater       |"+ " RM 1000");
+				System.out.println("   Total original price           = RM 2400");
+				
+				System.out.println("   2.  Package B   |");
+				System.out.println("   Consists of: Shorts        |"+ " RM 580");
+				System.out.println("                Blouse        |"+ " RM 1450");
+				System.out.println("                Hoodies       |"+ " RM 680");
+				System.out.println("   Total original price           = RM 2710");
+				
+				System.out.println("   3.  Package C   |");
+				System.out.println("   Consists of: Skirt         |"+ " RM 650");
+				System.out.println("                Dress         |"+ " RM 3500");
+				System.out.println("                Jacket        |"+ " RM 840");
+				System.out.println("   Total original price           = RM 4990");
+				
+				System.out.println("   4.  Package D   |");
+				System.out.println("   Consists of: Polo shirt    |"+ " RM 550");
+				System.out.println("                Suit jacket   |"+ " RM 2000");
+				System.out.println("                Coat          |"+ " RM 3800");
+				System.out.println("   Total original price           = RM 6350");
+				System.out.println();
+				System.out.println("Please select the clothes package: ");
+				clothes = sc.nextLine();
+				System.out.println();
+				
+				System.out.println("===Size Selection===");
+				System.out.println();
+				System.out.println(" Extra Large ");
+				System.out.println(" Large ");
+				System.out.println(" Medium ");
+				System.out.println(" Small  ");
+				System.out.println(" Extra Small  ");
+				System.out.println();
+				System.out.println("Please select your size for clothes: ");
+				size1 = sc.nextLine();
+				System.out.println();
+				
+				System.out.println("Do you want to add-on any other packages? ");
+				System.out.println("===Clothes package===");
+				System.out.println("   1.  Package A   |");
+				System.out.println("   Consists of: Tee           |"+ " RM 450");
+				System.out.println("                Pants         |"+ " RM 950");
+				System.out.println("                Sweater       |"+ " RM 1000");
+				System.out.println("   Total original price           = RM 2400");
+				
+				System.out.println("   2.  Package B   |");
+				System.out.println("   Consists of: Shorts        |"+ " RM 580");
+				System.out.println("                Blouse        |"+ " RM 1450");
+				System.out.println("                Hoodies       |"+ " RM 680");
+				System.out.println("   Total original price           = RM 2710");
+				
+				System.out.println("   3.  Package C   |");
+				System.out.println("   Consists of: Skirt         |"+ " RM 650");
+				System.out.println("                Dress         |"+ " RM 3500");
+				System.out.println("                Jacket        |"+ " RM 840");
+				System.out.println("   Total original price           = RM 4990");
+				
+				System.out.println("   4.  Package D   |");
+				System.out.println("   Consists of: Polo shirt    |"+ " RM 550");
+				System.out.println("                Suit jacket   |"+ " RM 2000");
+				System.out.println("                Coat          |"+ " RM 3800");
+				System.out.println("   Total original price           = RM 6350");
+				System.out.println();
+				System.out.println("Please select the clothes package: ");
+				clothes2 = sc.nextLine();
+				
+				System.out.println("===Size Selection===");
+				System.out.println();
+				System.out.println(" Extra Large ");
+				System.out.println(" Large ");
+				System.out.println(" Medium ");
+				System.out.println(" Small  ");
+				System.out.println(" Extra Small  ");
+				System.out.println();
+				System.out.println("Please select your size for clothes: ");
+				size2 = sc.nextLine();
+				System.out.println();
+				
+				System.out.println("===Membership===");
+				System.out.println("**10% offer will be given for the first item with membership and 25% discount on the second one.");
+				System.out.println("**FREE Shipping is available for every membership");
+				System.out.println();
+				System.out.print("1. Do you have membership? Please enter 'yes' or 'no' ");
+				choice = sc.next();
+				System.out.println();
+				System.out.print("2. Please enter the ID number for the customer with membership and non-membership will need to enter '-' ");
+				id = sc.next();
+				System.out.println();
+				System.out.print("3. Your membership is going to expired. Do you want to renew it? Please enter 'yes' or 'no' ");
+				renew = sc.next();
+				System.out.println();
+				System.out.print("4. Enter number '1' which is RM 20 for another 1 year membership. Would you like to renew it?");
+				duration = sc.next();
+				System.out.println();
+				
+				System.out.println("===Order Confirmation===");
+				System.out.println();
+				System.out.println("The clothes package you choose is: " + clothes2);
+				System.out.println();
+				System.out.println("The size you choose is: " + size2);
+				System.out.println();
+				System.out.println("The quantity you needed for each package is: " + "1");
+				System.out.println();
+				
+				System.out.println("Please enter the total price for the first clothes package: ");
+				System.out.println("   1.  Package A                   = RM 2400");
+				System.out.println("   2.  Package B                   = RM 2710");	
+				System.out.println("   3.  Package C                   = RM 4990");	
+				System.out.println("   4.  Package D                   = RM 6350 ");
+				oriPrice = sc.nextDouble();
+				System.out.println("Please enter the total price for the second clothes package: ");
+				System.out.println("   1.  Package A                   = RM 2400");
+				System.out.println("   2.  Package B                   = RM 2710");	
+				System.out.println("   3.  Package C                   = RM 4990");	
+				System.out.println("   4.  Package D                   = RM 6350 ");
+				oriPrice2 = sc.nextDouble();
+					
+				System.out.println("===Payment===");
+				System.out.println();
+				int pay;
+				System.out.println("Do you want to pay by cash or by online banking? Please enter '1' for cash and '2' for online banking.");
+				pay = sc.nextInt();
+				
+				double amount;
+				double amount_paid =0;
+				double shipping =0;
+				double total_original_price = oriPrice + oriPrice2 + shipping + Membership_fee;
+				double membership_discount= oriPrice * 10/100 + oriPrice2 * 25/100;
+				double total_price_after_promotion = total_original_price - membership_discount;
+				double change = amount_paid - total_price_after_promotion;
+				
+				if(pay==2) {
+					int password, password1;
+					int k;
+					System.out.println("Please enter your account username : " + name);
+					System.out.println("Please enter your password : ");
+					password = sc.nextInt();
+					System.out.println("Please re-enter your password : ");
+					password1 = sc.nextInt();
+					
+					
+					for (k=3; k>=0; k--) {
+						if(k==0) {
+							System.out.println("LOGIN FAILED!!! Please pay by other method. ");
+							pay = sc.nextInt();
+							break;
+							}
+						
+						if (password == password1) { 
+							amount = total_price_after_promotion;
+							System.out.println("Correct password. ");
+							System.out.printf("Total price with membership fee    =  RM "+"%.2f",total_original_price);
+							System.out.println();
+							System.out.printf("Membership discount                =  RM  "+"%.2f",membership_discount);
+							System.out.println();
+							System.out.printf("The price with membership discount =  RM "+"%.2f",total_price_after_promotion);
+							System.out.println();
+							System.out.printf("Total amount paid  =  RM "+ "%.2f",total_price_after_promotion);
+							System.out.println();
+							System.out.println("The amount is already deducted from your account.");
+							System.out.println("Thank you for using MYTHERESA!" );
+							System.out.println("Hope you enjoy while using our platform!");
+							System.out.println("Please come and visit our platform again!");
+							break;
+						}
+						
+						else if(password != password1) {
+							System.out.println("Wrong password. ");
+							System.out.println("You have 5 more chances. Please re-enter your password.");
+							password1 = sc.nextInt();				
+						}	
+					}
+					}
+				
+				if(pay==1) {
+				    System.out.println("**************************************************************");
+					System.out.printf("Total price with membership fee    =  RM "+"%.2f",total_original_price);
+					System.out.println();
+					System.out.printf("Membership discount                =  RM  "+"%.2f",membership_discount);
+					System.out.println();
+					System.out.printf("The price with membership discount =  RM "+"%.2f",total_price_after_promotion);
+					System.out.println();
+					System.out.printf("Total amount =  RM "+ "%.2f",total_price_after_promotion);
+					System.out.println();
+					System.out.println("Please enter the amount you want to pay." );
+					amount = sc.nextDouble();
+					System.out.printf("Total amount paid  =  RM "+ "%.2f",total_price_after_promotion);
+					System.out.println();
+					System.out.println("THANK YOU FOR USING MYTHERESA!" );
+					System.out.println("Hope you enjoy while using our platform!");
+					System.out.println("Please come and visit our platform again!");
+				    System.out.println("**************************************************************");
+					
+					while(amount<total_price_after_promotion) {	
+					    System.out.println("**************************************************************");
+						System.out.printf("The final price is RM " + "%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.println("Please re-enter the amount you want to pay." );
+						amount = sc.nextDouble();
+						System.out.printf("Total amount paid  =  RM "+ "%.2f",total_price_after_promotion);
+						amount_paid = sc.nextDouble();
+						System.out.println();
+						System.out.println("THANK YOU FOR USING MYTHERESA!" );
+						System.out.println("Hope you enjoy while using our platform!");
+						System.out.println("Please come and visit our platform again!");
+					    System.out.println("**************************************************************");
+					}
+					
+					if(amount==total_price_after_promotion) {
+					    System.out.println("**************************************************************");
+						System.out.printf("Total price with membership fee    =  RM "+"%.2f",total_original_price);
+						System.out.println();
+						System.out.printf("Membership discount                =  RM  "+"%.2f",membership_discount);
+						System.out.println();
+						System.out.printf("The price with membership discount =  RM "+"%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.printf("The price you need to pay = RM " + "%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.printf("Total amount paid  =  RM "+ "%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.println("THANK YOU FOR USING MYTHERESA!" );
+						System.out.println("Hope you enjoy while using our platform!");
+						System.out.println("Please come and visit our platform again!");
+					    System.out.println("**************************************************************");
+				    }
+					
+					else if(amount>total_price_after_promotion) {
+						change = amount - total_price_after_promotion;
+					    System.out.println("**************************************************************");
+						System.out.printf("Total price with membership fee    =  RM "+"%.2f",total_original_price);
+						System.out.println();
+						System.out.printf("Membership discount                =  RM  "+"%.2f",membership_discount);
+						System.out.println();
+						System.out.printf("The price with membership discount =  RM "+"%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.printf("The price you need to pay = RM " + "%.2f",total_price_after_promotion);
+						System.out.println();
+						System.out.println("Please enter the amount paid      =  RM ");
+						amount_paid = sc.nextDouble();
+						System.out.printf("Change =  RM " +"%.2f",change);
+						System.out.println("Thank you for using MYTHERESA!" );
+						System.out.println("Hope you enjoy while using our platform!");
+						System.out.println("Please come and visit our platform again!");
+					    System.out.println("**************************************************************");
+						
+						sc.close();
+					}
+					}
+		
+
+	}
+
+}
+
+
+// NURFARAH WAHIDA BINTI ZULKFLE (288062)
+
+
+package assignment3;
+import java.util.Scanner;
+public class Assignment3 {
+
+	public static void main(String[] args) {
+		Scanner ls = new Scanner(System.in);
+		
+		
+		String [] pack = {"Modern Design + Basic Colour", "Modern Design + Premium Colour", "Vintage Design + Basic Colour", " Vintage Design + Premium Colour", "Traditional Design + Basic Colour", 
+				"Traditional Design + Premium Colour","Custom Design + Basic Colour","Custom Design + Premium Colour"};
+		String [] design = {"LIVING ROOM","BEDROOM","STUDY ROOM","GAMING ROOM","STUDIO", "KITCHEN","TOILET"}; 
+		String [] colour = {"Black","White","Green","Blue","Red","Yellow"};
+		String [] colour2 = {"Gold","Silver","Rose Gold"};
+
+		int type=0;
+		int choice=0;
+		double width = 0; double length = 0;
+		double total_area=0;
+		
+		System.out.println("\n________________________________________");
+		System.out.println();
+		System.out.print("          **MERIDIAN INTERIORS**    ");
+		System.out.println("\n________________________________________");
+		System.out.println();
+		System.out.println();
+				
+		showMessage();
+		
+		//user insert room size
+		System.out.println("Enter width(in ft): ");
+		width = ls.nextDouble();
+		System.out.println("Enter length (in ft): ");
+		length =ls.nextDouble();
+		
+		total_area =roomSize(width,length);
+		int modern=25; 
+		double priceModern =modernPrice(modern,total_area);
+		int vintage = 30;
+		double priceVintage =vintagePrice(vintage,total_area);
+		int traditional = 35;
+		double priceTraditional = traditionalPrice(traditional,total_area);
+		 int custom = 45;
+		double priceCustom =customPrice(custom,total_area);
+		
+		 double basic = 2.20; /*Rm 2.20 per square feet*/ double premium = 3.00; /*Rm 3.00 per square feet*/
+		double priceBasic =basicPrice(basic,total_area);
+		double pricePremium =premiumPrice(premium,total_area);
+		
+		
+		
+		//Display type of package
+		System.out.println("\n* * * * * * * Package * * * * * * * * * * * * * * *");
+		System.out.print("*                                                 *");
+		System.out.println();
+		System.out.println("*  1-Set A: " + pack[0] + "          *");
+		System.out.println("*  2-Set B: " + pack[1] + "        *");
+		System.out.println("*  3-Set C: " + pack[2] + "         *");
+		System.out.println("*  4-Set D: " + pack[3] + "      *");
+		System.out.println("*  5-Set E: " + pack[4] + "     *");
+		System.out.println("*  6-Set F: " + pack[5] + "   *");
+		System.out.println("*  7-Set G: " + pack[6] + "          *");
+		System.out.println("*  8-Set H: " + pack[7] + "        *");
+		System.out.println("*                                                 *");
+		System.out.print("*                                                 *");
+		System.out.println("\n* * * * * * * * * * * * * * * * * * * * * * * * * *");
+	
+				
+				System.out.println();
+				System.out.println();
+	
+				System.out.println("Please Choose Your Package: ");
+				int set = ls.nextInt();
+				
+				
+				if(contains(set)){ 
+					System.out.println();
+					System.out.println("Package "+ set +" is available."); 
+					}
+				else
+					{ 
+					while (set != 1 && set != 2 && set != 3 && set != 4 && set != 5 && set != 6 && set != 7 && set != 8) {
+						System.out.println();
+						System.out.println("Package is unavailable.");
+						System.out.println();
+						System.out.println("Please Choose Your Package: ");
+						set = ls.nextInt();
+						contains(set);
+						System.out.println("Package "+ set +" is available."); 
+					
+						
+				
+						
+						}
+					
+					
+					
+					
+					
+					}
+				switch(set) {
+				
+				case 1:
+					
+					showBasic();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set A
+					double set_A;  /*(modern + basic)*/
+					set_A = priceModern + priceBasic;
+					
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+						System.out.println();
+						System.out.println("Set A: " + pack[0]);
+						System.out.println();
+						
+						if (choice==1) {
+							System.out.print("Colour:" + colour[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour[2]);
+						}else if (choice==4) {
+							System.out.println("Colour:" + colour[3]);
+						}else if (choice==5) {
+							System.out.println("Colour:" + colour[4]);
+						}else if (choice==6) {
+							System.out.println("Colour:" + colour[5]);
+							System.out.println();
+						}
+						
+							
+						
+						
+							System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_A);
+						
+					break;
+				
+				case 2:
+					
+					showPremium();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set B
+						double set_B;  /*(modern + premium*/
+						set_B = priceModern + pricePremium;
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+							System.out.println();
+						}
+						System.out.println();
+						System.out.println("Set B: " + pack[1]);
+						System.out.println();
+
+						if (choice==1) {
+							System.out.print("Colour:" + colour2[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour2[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour2[2]);
+							System.out.println();		
+						}	
+							total_area = roomSize(width,length);
+						System.out.println();
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_B);
+					break;
+						
+			case 3:
+					
+					
+					showBasic();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set C
+						double set_C; /*(vintage + basic)*/
+						set_C = priceVintage + priceBasic;
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+						
+						System.out.println();
+						System.out.println("Set C: " + pack[2]);
+						System.out.println();
+						
+						if (choice==1) {
+							System.out.print("Colour:" + colour[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour[2]);
+						}else if (choice==4) {
+							System.out.println("Colour:" + colour[3]);
+						}else if (choice==5) {
+							System.out.println("Colour:" + colour[4]);
+						}else if (choice==6) {
+							System.out.println("Colour:" + colour[5]);
+							System.out.println();
+
+						}
+						
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_C);
+					break;
+				
+				case 4:
+					
+					showPremium();
+
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set D
+						double set_D;  /*(vintage + premium*/
+						set_D = priceVintage + pricePremium;
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+			
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+						
+						System.out.println();
+						System.out.println("Set D: " + pack[3]);
+						System.out.println();
+						if (choice==1) {
+							System.out.print("Colour:" + colour2[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour2[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour2[2]);
+							System.out.println();
+								
+						}	
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_D);
+					break;
+						
+				case 5:
+					
+					showBasic();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set E
+						double set_E; /*(Traditional + basic)*/
+						set_E = priceTraditional + priceBasic; 
+						
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						
+
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+					
+						System.out.println();
+						System.out.println("Set E: " + pack[4]);
+						System.out.println();
+						if (choice==1) {
+							System.out.print("Colour:" + colour[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour[2]);
+						}else if (choice==4) {
+							System.out.println("Colour:" + colour[3]);
+						}else if (choice==5) {
+							System.out.println("Colour:" + colour[4]);
+						}else if (choice==6) {
+							System.out.println("Colour:" + colour[5]);
+							System.out.println();
+
+						}
+						
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_E);
+					break;
+						
+				case 6:
+					
+					showPremium();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+			
+					//Calculate Total Price for Set F
+						double set_F;  /*(traditional + premium*/
+						set_F = priceVintage + pricePremium;
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+					
+							System.out.println();
+							System.out.println("Set F: " + pack[5]);
+							System.out.println();		
+							if (choice==1) {
+								System.out.print("Colour:" + colour2[0]);
+							}else if (choice==2) {
+								System.out.println("Colour:" + colour2[1]);
+							}else if (choice==3) {
+								System.out.println("Colour:" + colour2[2]);
+								System.out.println();	
+							}	
+							
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_F);
+					break;
+							
+				case 7:
+					
+					showBasic();
+					System.out.println("Please Choose Colour: ");
+					choice= ls.nextInt();
+					typeOfRoom();
+					System.out.println("Enter code:  ");
+					type = ls.nextInt(); 
+					
+					//Calculate Total Price for Set E
+						double set_G; /*(Custom + basic)*/
+						set_G = priceCustom + priceBasic; 
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+			
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+					
+						System.out.println();
+						System.out.println("Set G: " + pack[6]);
+						System.out.println();
+						if (choice==1) {
+							System.out.print("Colour:" + colour[0]);
+						}else if (choice==2) {
+							System.out.println("Colour:" + colour[1]);
+						}else if (choice==3) {
+							System.out.println("Colour:" + colour[2]);
+						}else if (choice==4) {
+							System.out.println("Colour:" + colour[3]);
+						}else if (choice==5) {
+							System.out.println("Colour:" + colour[4]);
+						}else if (choice==6) {
+							System.out.println("Colour:" + colour[5]);
+							System.out.println();
+
+						}
+						
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_G);
+					break;
+						
+			case 8:
+					
+				showPremium();
+				System.out.println("Please Choose Colour: ");
+				choice= ls.nextInt();
+				typeOfRoom();
+				System.out.println("Enter code:  ");
+				type = ls.nextInt(); 
+				
+				//Calculate Total Price for Set H
+						double set_H;  /*(Custom + premium*/
+						set_H = priceCustom + pricePremium;
+						
+						System.out.println("\n________________________________________________");
+						System.out.println();
+						System.out.print("          **MERIDIAN INTERIORS ORDER RECEIPT**    ");
+						System.out.println("\n________________________________________________");
+						System.out.println();
+			
+						if(type == 1) {
+							System.out.println("| DESIGN FOR " + design[0] + " |");
+						}else if (type == 2) {
+							System.out.println("| DESIGN FOR " + design[1] + " |");
+						}else if (type == 3) {	
+							System.out.println("| DESIGN FOR " + design[2] + " |");
+						}else if (type == 4) {
+							System.out.println("| DESIGN FOR " + design[3] + " |");
+						}else if (type == 5) {
+							System.out.println("| DESIGN FOR " + design[4] + " |");
+						}else if (type == 6) {
+							System.out.println("| DESIGN FOR " + design[5] + " |");
+						}else if (type == 7) {
+							System.out.println("| DESIGN FOR " + design[6] + " |");
+						}
+					
+							System.out.println();
+							System.out.println("Set H: " + pack[7]);
+							System.out.println();
+							if (choice==1) {
+								System.out.print("Colour:" + colour2[0]);
+							}else if (choice==2) {
+								System.out.println("Colour:" + colour2[1]);
+							}else if (choice==3) {
+								System.out.println("Colour:" + colour2[2]);
+								System.out.println();	
+							}	
+						
+						System.out.print("Room size = " + total_area + " sqf");
+						System.out.print("\n----------------------------------------");
+						System.out.println();
+						System.out.print("Total Price:RM ");
+						System.out.printf("%.2f",set_H);
+							
+							break;
+						}
+				showMessage2();
+				}
+			
+			
+					
+				
+	public static void showMessage() { //header for method 
+		System.out.println("Hello, Welcome to MERIDAN INTERIORS! ");
+		System.out.println("Please make sure you insert the right code and spelling while filling the form :D");
+		System.out.println("Do follow the instructions below.");
+		System.out.println();
+		
+	} //showMessage method
+	
+	public static void showMessage2() { //header for method 
+		System.out.println("\n----------------------------------------");
+		System.out.println("Thank you for being our valued customer <3");
+		System.out.println("We are so grateful for the pleasure of serving you and hope we met your expectations.");
+		System.out.print("See you again in the future :) \nLots of Love! ");
+		
+		
+	} //showMessage method
+	
+	public static void showBasic() { 
+	
+
+	System.out.println("\n* * * * * * * Colours * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+	System.out.print("*                                                                           *");
+	System.out.println();
+	System.out.println("*  Basic Colours: [1] Black [2] White [3] Green [4] Blue [5] Red [6] Yellow *");
+	System.out.print("*                                                                           *");
+	System.out.println("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+	System.out.println();
+					
+	}//showBasic method
+	
+	public static void showPremium() { //header for method 
+
+		System.out.println("\n* * * * * * * Colours * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
+		System.out.print("*                                                                           *");
+		System.out.println();
+		System.out.println("*  Premium Colours: [1] Gold [2] Silver [3] Rose Gold                       *");
+		System.out.print("*                                                                           *");
+		System.out.println("\n* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+		System.out.println();
+		
+	} //showPremium method
+	
+public static void typeOfRoom() { //header for method 
+	System.out.println();
+	System.out.println("[1] living room\n" + "[2] bedroom\n" + "[3] study room\n" +  "[4] gaming room\n" + "[5] studio\n" + "[6] kitchen\n" + "[7] toilet\n");
+}
+
+public static double roomSize(double width, double length) {
+	return width*length;
+	
+
+	
+}
+
+public static double modernPrice(int modern, double total_area) {
+	
+	return modern * total_area; 
+}
+public static double vintagePrice(int vintage , double total_area) {
+	return vintage * total_area; 
+}
+
+public static double traditionalPrice(int traditional, double total_area) {
+	return traditional * total_area; 
+}
+
+public static double customPrice(int custom, double total_area) {
+	return custom * total_area; 
+}
+public static double basicPrice(double basic, double total_area) {
+	basic = 2.20;
+	return basic * total_area; 
+}
+public static double premiumPrice(double premium, double total_area) {
+	return premium * total_area; 
+}
+
+
+public static boolean contains(int  s){ 
+	
+	
+	if(s ==1 || s ==2 || s ==3 || s ==4 ||  s ==5 || s ==6 || s ==7 || s ==8){ 
+		return true; 
+		
+	} 
+
+
+return false; 
+
+} 
+
+				
+}
